@@ -92,10 +92,11 @@
 <div class="content container">
 
 
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
 <div class="franklin-content" >
-  <h1 id="setting_up_your_environment" ><a href="#setting_up_your_environment"> Setting Up Your Environment</a></h1><div class="toc"><ol><li><a href="#git">Git</a></li><li><a href="#vscode">VSCode</a></li><li><a href="#juliaup">Juliaup</a></li><li><a href="#test_your_julia_install">Test your Julia install</a></li><li><a href="#julia_+_vscode">Julia + VSCode</a></li></ol></div><h2 id="git" ><a href="#git"> Git</a></h2><p><div class="tldr"><p><strong>TLDR</strong>: Visit <a href="https://education.github.com/git-cheat-sheet-education.pdf">education.github.com</a> for a nice cheatsheet </p>
-</div>
-The most we will likely need to do is </p>
+  <h1 id="setting_up_your_environment" ><a href="#setting_up_your_environment"> Setting Up Your Environment</a></h1><div class="toc"><ol><li><a href="#git">Git</a></li><li><a href="#vscode">VSCode</a></li><li><a href="#juliaup">Juliaup</a></li><li><a href="#test_your_julia_install">Test your Julia install</a></li><li><a href="#julia_+_vscode">Julia + VSCode</a></li></ol></div><h2 id="git" ><a href="#git"> Git</a></h2><div class="tldr"><p><strong>TLDR</strong>: Visit <a href="https://education.github.com/git-cheat-sheet-education.pdf">education.github.com</a> for a nice cheatsheet </p>
+</div><p>The most we will likely need to do is pull from various GitHub repos. For instance to get started with this sessions we will do</p>
+<pre><code class="bash">git clone https://github.com/rayegun/JuliaIntro.git</code></pre>
 <h2 id="vscode" ><a href="#vscode"> VSCode</a></h2><div class="tldr"><p><strong>TLDR</strong>: Install <code>VSCode</code> from <a href="https://code.visualstudio.com/">code.visualstudio.com/</a> </p>
 </div><p>Most of our instructors will use VSCode during their tutorials. The VSCode website is fairly well documented. If you are on MacOS and have Homebrew you can simply run</p>
 <pre><code class="bash">brew install --cask visual-studio-code</code></pre>
@@ -147,3 +148,64 @@ Upon installation of <code>juliaup</code>, the current stable version of Julia i
     
   </body>
 </html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>

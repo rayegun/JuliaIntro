@@ -92,6 +92,7 @@
 <div class="content container">
 
 
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
 <div class="franklin-content" >
   <h1 id="the_promised_land_multiple_dispatch" ><a href="#the_promised_land_multiple_dispatch"> The Promised Land: Multiple Dispatch</a></h1><div class="toc"><ol><li><a href="#rock_paper_scissors">Rock Paper Scissors</a></li><li><a href="#the_most_specific_signature??">The <em><strong>most specific signature</em></strong>??</a></li><li><a href="#ambiguity">Ambiguity 😱</a></li></ol></div><h2 id="rock_paper_scissors" ><a href="#rock_paper_scissors"> Rock Paper Scissors</a></h2><p>Let's play rock paper scissors:</p>
 <pre><code class="julia">abstract type Shape end
@@ -169,7 +170,7 @@ Base.MethodList
               specializations: Core.MethodInstance#= circular reference @-2 =#
               speckeyset: Memory{Any}
                 length: Int64 0
-                ptr: Ptr{Nothing} @0x00007f5bb470aea0
+                ptr: Ptr{Nothing} @0x00007ff67130aea0
               slot_syms: String &quot;#self#\0a\0b\0&quot;
               external_mt: #undef
               source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\b\b\x16\xbe\xe2.\x1e\x11\0\x05\x03\0\x05\x02\x007\x03\x01\xbe\x16\xbe\xee\0\0\0\0\0\0\0\0A\x16\xbd\xe2/#\x11\0\x81\xb1\xa7A\x01\0\0&quot;
@@ -215,8 +216,8 @@ Base.MethodList
               specsigflags: Bool true
               precompile: Bool true
               relocatability: UInt8 0x00
-              invoke: Ptr{Nothing} @0x00007f5ba978cf60
-              specptr: Ptr{Nothing} @0x00007f5ba978cf40
+              invoke: Ptr{Nothing} @0x00007ff65d982bb0
+              specptr: Ptr{Nothing} @0x00007ff65d982b90
             inInference: Bool false
             cache_with_orig: Bool false
             precompiled: Bool false
@@ -238,14 +239,14 @@ Base.MethodList
           specsigflags: Bool true
           precompile: Bool true
           relocatability: UInt8 0x00
-          invoke: Ptr{Nothing} @0x00007f5ba9796d60
-          specptr: Ptr{Nothing} @0x00007f5ba9796d40
+          invoke: Ptr{Nothing} @0x00007ff65d98c9d0
+          specptr: Ptr{Nothing} @0x00007ff65d98c9b0
         inInference: Bool false
         cache_with_orig: Bool false
         precompiled: Bool false
       speckeyset: Memory{Any}
         length: Int64 0
-        ptr: Ptr{Nothing} @0x00007f5bb470aea0
+        ptr: Ptr{Nothing} @0x00007ff67130aea0
       slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
       external_mt: #undef
       source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xad\xa7A\0\0&quot;
@@ -343,7 +344,7 @@ Base.MethodList
                 precompiled: Bool false
               speckeyset: Memory{Any}
                 length: Int64 0
-                ptr: Ptr{Nothing} @0x00007f5bb470aea0
+                ptr: Ptr{Nothing} @0x00007ff67130aea0
               slot_syms: String &quot;#self#\0a\0b\0&quot;
               external_mt: #undef
               source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\b\b\x16\xbe\xe2.\x1e\x11\0\x05\x03\0\x05\x02\x007\x03\x01\xbe\x16\xbe\xee\0\0\0\0\0\0\0\0A\x16\xbd\xe2/#\x11\0\x81\xb1\xa7A\x01\0\0&quot;
@@ -406,14 +407,14 @@ Base.MethodList
                 specsigflags: Bool true
                 precompile: Bool true
                 relocatability: UInt8 0x00
-                invoke: Ptr{Nothing} @0x00007f5ba9796d60
-                specptr: Ptr{Nothing} @0x00007f5ba9796d40
+                invoke: Ptr{Nothing} @0x00007ff65d98c9d0
+                specptr: Ptr{Nothing} @0x00007ff65d98c9b0
               inInference: Bool false
               cache_with_orig: Bool false
               precompiled: Bool false
             speckeyset: Memory{Any}
               length: Int64 0
-              ptr: Ptr{Nothing} @0x00007f5bb470aea0
+              ptr: Ptr{Nothing} @0x00007ff67130aea0
             slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
             external_mt: #undef
             source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xad\xa7A\0\0&quot;
@@ -477,14 +478,14 @@ Base.MethodList
               specsigflags: Bool true
               precompile: Bool true
               relocatability: UInt8 0x00
-              invoke: Ptr{Nothing} @0x00007f5ba978b2f0
-              specptr: Ptr{Nothing} @0x00007f5ba978b2d0
+              invoke: Ptr{Nothing} @0x00007ff65d980f40
+              specptr: Ptr{Nothing} @0x00007ff65d980f20
             inInference: Bool false
             cache_with_orig: Bool false
             precompiled: Bool false
           speckeyset: Memory{Any}
             length: Int64 0
-            ptr: Ptr{Nothing} @0x00007f5bb470aea0
+            ptr: Ptr{Nothing} @0x00007ff67130aea0
           slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
           external_mt: #undef
           source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xae\xa7A\0\0&quot;
@@ -527,7 +528,7 @@ Base.MethodList
         specializations: empty SimpleVector
         speckeyset: Memory{Any}
           length: Int64 0
-          ptr: Ptr{Nothing} @0x00007f5bb470aea0
+          ptr: Ptr{Nothing} @0x00007ff67130aea0
         slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
         external_mt: #undef
         source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xaf\xa7A\0\0&quot;
@@ -556,13 +557,13 @@ Base.MethodList
       va: Bool false
     leafcache: Memory{Any}
       length: Int64 32
-      ptr: Ptr{Nothing} @0x00007f5b9a33a660
+      ptr: Ptr{Nothing} @0x00007ff677358020
     cache: Nothing nothing
     max_args: Int64 3
     module: Module Main.__FRANKLIN_1181134
     backedges: #undef
     : Int64 0
-    : Int64 7164492911336226816
+    : Int64 0
     offs: UInt8 0x01
     : UInt8 0x00
 </code></pre>
@@ -640,3 +641,64 @@ Stacktrace:
     
   </body>
 </html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>

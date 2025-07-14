@@ -93,6 +93,7 @@
 <div class="content container">
 
 
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
 <div class="franklin-content" >
   <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#environments">Environments</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#a_note_on_scope">A note on scope</a></li><li><a href="#arrays!">Arrays!</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><div class="tldr"><p><strong>TLDR</strong>: The Julia REPL has 4 modes: Julia, package (<code>]</code>), help (<code>?</code>) and shell (<code>;</code>). </p>
 </div><p>The Read-Eval-Print Loop (or REPL) is the most basic way to interact with Julia, check out its <a href="https://docs.julialang.org/en/v1/stdlib/REPL/">documentation</a> for details.
@@ -146,7 +147,7 @@ Pkg.jl allows you to:</p>
 <span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Manifest.toml`
   <span class="sgr90">[7876af07] </span><span class="sgr92">+ Example v0.5.5</span>
 Precompiling project...
-    478.5 ms  ✓ Example
+    426.7 ms  ✓ Example
   1 dependency successfully precompiled in 1 seconds. 303 already precompiled.
 </code></pre>
 <pre><code class="julia-repl"><span class="sgr34"><span class="sgr1">(JuliaIntro) pkg&gt;</span></span> status
@@ -554,14 +555,14 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">"asdf"</code></pre></div><p>The most basic array constructors:</p>
 <pre><code class="julia">Vector&lbrace;Int64&rbrace;(undef, 5) # 5 element Vector</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
-  140031933867168
-  140031933867168
-                0
-                0
- -281062591186244</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
+ 140694702428304
+ 140694702428304
+               0
+               0
+    413720328211</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×3 Matrix{Float32}:
- -5.90876f-25  -2.06822f-33  -2.32235f-7
-  4.5687f-41    4.5687f-41    4.5687f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
+ 9.87156f34  1.06094f28  1.06094f28
+ 4.5904f-41  4.5904f-41  4.5904f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
 <p>There is also special juxtaposition syntax for empty arrays:</p>
 <pre><code class="julia">Float32[]</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">Float32[]</code></pre></div><h4 id="functions_that_generate_arrays" ><a href="#functions_that_generate_arrays"> Functions that generate arrays:</a></h4><pre><code class="julia">zeros(Bool, 3)</code></pre>
@@ -578,13 +579,13 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{Complex{Int64}}:
  1+10im  1+10im
  1+10im  1+10im</code></pre></div><pre><code class="julia">rand(Int8)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">-11</code></pre></div><pre><code class="julia">rand(5)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">44</code></pre></div><pre><code class="julia">rand(5)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Float64}:
- 0.054137640054863656
- 0.5690511231717137
- 0.6742379552221099
- 0.7777465639122952
- 0.4749411980181545</code></pre></div><pre><code class="julia">rand([:🐱, :🐶, :🐦, :🐴])</code></pre>
+ 0.3200839935918641
+ 0.8259454801724266
+ 0.3899262423436698
+ 0.2937366408666776
+ 0.5357347290287493</code></pre></div><pre><code class="julia">rand([:🐱, :🐶, :🐦, :🐴])</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">:🐴</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
 <h3 id="indexing" ><a href="#indexing"> Indexing</a></h3><pre><code class="julia">v = collect(1:2:9)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
@@ -618,27 +619,32 @@ String(&quot;asdf&quot;)</code></pre>
  7
  8</code></pre></div><pre><code class="julia">bools = rand(Bool, length(v))</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Bool}:
- 0
  1
  0
- 0
- 0</code></pre></div><pre><code class="julia">v[bools]</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">1-element Vector{Int64}:
- 3</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
+ 1
+ 1
+ 1</code></pre></div><pre><code class="julia">v[bools]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
+ 1
+ 5
+ 7
+ 9</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
 <pre><code class="julia">v = rand(1:10, 8)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">8-element Vector{Int64}:
-  5
- 10
+  9
+  1
+  6
  10
   4
-  5
-  1
-  7
-  4</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+  2
+  6
+  8</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
+  9
+  6
  10
- 10
-  7</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
+  6
+  8</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
 <pre><code class="julia">M[2, 2] = 10</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><p>But wait!!! Why is the value of the expression the RHS?
 We can see that <code>M</code> has been modified:</p>
@@ -738,3 +744,64 @@ pushfirst!(v, :💙)</code></pre>
     
   </body>
 </html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>

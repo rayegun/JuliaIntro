@@ -92,6 +92,7 @@
 <div class="content container">
 
 
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
 <div class="franklin-content" >
   <h1 id="types,_what_are_they_good_for?" ><a href="#types,_what_are_they_good_for?"> Types, What Are They Good For?</a></h1><div class="toc"><ol><li><a href="#type_assertions">Type assertions</a></li><li><a href="#the_type_tree">The Type Tree</a></li><li><a href="#structs">Structs</a></li><li><a href="#mutable_structs">Mutable structs</a></li><li><a href="#when_should_you_use_a_struct_or_a_mutable_struct?">When should you use a <code>struct</code> or a <code>mutable struct</code>?</a></li><li><a href="#parametric_types">Parametric Types</a></li><li><a href="#what's_the_type_of_a_type?">What's the type of a type?</a></li><li><a href="#tuples">Tuples</a></li><li><a href="#unions">Unions</a></li><li><a href="#unionalls">UnionAlls</a></li></ol></div><pre><code class="julia">using AbstractTrees</code></pre>
 <h3 id="all_values_have_a_single_concrete_concrete_type_which_is_a_leaf_of_a_single_global_type_tree._all_types_are_"first_class"" ><a href="#all_values_have_a_single_concrete_concrete_type_which_is_a_leaf_of_a_single_global_type_tree._all_types_are_"first_class""> All values have a single concrete concrete type which is a leaf of a single global type tree. All types are "first-class"</a></h3><pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> typeof(3.14159265)
@@ -140,7 +141,7 @@ Main.__FRANKLIN_1273372.var&quot;#1#2&quot;
 3
 
 <span class="sgr32"><span class="sgr1">julia&gt;</span></span> Vector{Float64}(undef, 2)
-[6.9184910587514e-310, 6.91849132669543e-310]
+[6.95132757367213e-310, 6.95133514623605e-310]
 
 <span class="sgr32"><span class="sgr1">julia&gt;</span></span> Complex{Float64}(1.0, 3.0)
 1.0 + 3.0im
@@ -538,3 +539,64 @@ end</code></pre>
     
   </body>
 </html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>

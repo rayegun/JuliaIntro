@@ -92,6 +92,7 @@
 <div class="content container">
 
 
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
 <div class="franklin-content" >
   <h1 id="julia_intro_for_qnumerics_summer_school" ><a href="#julia_intro_for_qnumerics_summer_school"> Julia Intro for QNumerics Summer School</a></h1><div class="toc"><ol><li><a href="#what_is_julia?">What is Julia?</a></li><li><a href="#why_julia?">Why Julia?</a></li><li><a href="#julia_vs._other_languages">Julia vs. Other Languages</a></li><li><a href="#other_resources">Other Resources</a></li></ol></div><h2 id="what_is_julia?" ><a href="#what_is_julia?"> What is Julia?</a></h2><p>Julia is a high-level, general-purpose programming language that is well suited for numerics, computational science, and scientific computing.</p>
 <figure style="text-align:center;">
@@ -201,3 +202,64 @@ can be extended without the need to modify existing code, without the need for c
     
   </body>
 </html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
