@@ -318,10 +318,7 @@ The following commented-out code is the original Franklin CSS:
 .hljs-meta.prompt_ {color: rgb(25, 179, 51);}
 */
 
-.code-output {
-  background: var(--output-background);
-  border: 1px dashed #dbdbdb;
-}
+
 
 /* ==================================================================
     BOXES

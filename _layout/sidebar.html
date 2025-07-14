@@ -1,10 +1,9 @@
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <h1><a href="/">MoJuWo</a></h1>
-      <p class="lead">Modern Julia Workflows</p>
+      <h1><a href="/">QNumerics</a></h1>
       <div class="logo-container">
-        <img src="/assets/logo.svg" alt="MoJuWo Logo" class="logo-img">
+        <img src="/assets/qnumerics-logo.png" alt="QNumerics Logo" class="logo-img">
       </div>
     </div>
     <nav class="sidebar-nav">
@@ -15,22 +14,31 @@
         <li class="menu-list-item"><a href="/#contents" class="menu-list-link">Contents</a>
         <li class="menu-list-item"><a href="/#before_you_start" class="menu-list-link">Before you start</a>
       </ul>
-      <!-- WRITTING -->
-      <a class="sidebar-nav-item {{ispage /writing/*}}active{{end}}" href="/writing/">Writing</a>
-        <ul class="menu-list-child-list {{ispage /writing/*}}active{{end}}">
-          <li class="menu-list-item"><a href="/writing/#getting_help" class="menu-list-link">Getting help</a>
-          <li class="menu-list-item"><a href="/writing/#installation" class="menu-list-link">Installation</a>
-          <li class="menu-list-item"><a href="/writing/#repl" class="menu-list-link">REPL</a>
-          <li class="menu-list-item"><a href="/writing/#editor" class="menu-list-link">Editor</a>
-          <li class="menu-list-item"><a href="/writing/#running_code" class="menu-list-link">Running code</a>
-          <li class="menu-list-item"><a href="/writing/#notebooks" class="menu-list-link">Notebooks</a>
-          <li class="menu-list-item"><a href="/writing/#environments" class="menu-list-link">Environments</a>
-          <li class="menu-list-item"><a href="/writing/#local_packages" class="menu-list-link">Local packages</a>
-          <li class="menu-list-item"><a href="/writing/#development_workflow" class="menu-list-link">Development workflow</a>
-          <li class="menu-list-item"><a href="/writing/#configuration" class="menu-list-link">Configuration</a>
-          <li class="menu-list-item"><a href="/writing/#interactivity" class="menu-list-link">Interactivity</a>
-          <li class="menu-list-item"><a href="/writing/#logging" class="menu-list-link">Logging</a>
-          <li class="menu-list-item"><a href="/writing/#debugging" class="menu-list-link">Debugging</a>
+      <!-- GETTINGSTARTED -->
+      <a class="sidebar-nav-item {{ispage /startup/*}}active{{end}}" href="/startup/">Setting Up Environment</a>
+        <ul class="menu-list-child-list {{ispage /startup/*}}active{{end}}">
+          <li class="menu-list-item"><a href="/writing/#git" class="menu-list-link">Git</a>
+          <li class="menu-list-item"><a href="/writing/#vscode" class="menu-list-link">Visual Studio Code</a>
+          <li class="menu-list-item"><a href="/writing/#julia_+_vscode" class="menu-list-link">Julia + VSCode</a>
+          <li class="menu-list-item"><a href="/writing/#tips_tricks" class="menu-list-link">Tips & Tricks</a>
+        </ul>
+      <a class="sidebar-nav-item {{ispage /juliabasics/*}}active{{end}}" href="/juliabasics/">First Steps</a>
+        <ul class="menu-list-child-list {{ispage /juliabasics/*}}active{{end}}">
+          <li class="menu-list-item"><a href="/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/juliabasics/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item {{ispage /types/*}}active{{end}}" href="/types/">Types</a>
+        <ul class="menu-list-child-list {{ispage /types/*}}active{{end}}">
+          <li class="menu-list-item"><a href="/types/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/types/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/types/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item {{ispage /dispatch/*}}active{{end}}" href="/types/">Multiple Dispatch</a>
+        <ul class="menu-list-child-list {{ispage /dispatch/*}}active{{end}}">
+          <li class="menu-list-item"><a href="/dispatch/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/dispatch/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
         </ul>
       <!-- SHARING -->
       <a class="sidebar-nav-item {{ispage /sharing/*}}active{{end}}" href="/sharing/">Sharing</a>

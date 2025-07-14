@@ -107,7 +107,7 @@ To exit it, hit backspace after the prompt and you'll get the `julia>` prompt ba
 By pressing `?` you can obtain information and metadata about Julia objects (functions, types, etc.) or unicode symbols.
 The query fetches the docstring of the object, which explains how to use it.
 
-```?help-example
+```?
 println
 ```
 

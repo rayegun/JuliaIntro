@@ -19,3 +19,4 @@ jobs:
         with:
           DEPLOY: ${{ github.event_name == 'push' }}
           DEPLOY_BRANCH: 'gh-pages'
+          BASE_URL_PREFIX: "env.REPO_PREFIX"

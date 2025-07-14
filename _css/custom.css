@@ -65,6 +65,12 @@ img[alt=badge] {
   margin-bottom: 1em;
 }
 
+.important {
+  background-color: #2ebe4448;
+  border-radius: 10px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
 
 /* ==================================================================
     HLJS CODE BLOCKS
@@ -124,3 +130,7 @@ TODO: remove when not required in Xranklin.
 */
 .language-ruby::before {content: "Julia";}
 
+.code-result::before {content: "Result"; padding: 0.05rem 0.5rem 0.05rem;}
+.code-stdout::before {content: "Result"; padding: 0.05rem 0.5rem 0.05rem;}
+.code-result {background-color: #394758 !important;}
+.code-stdout {background-color: #394758 !important;}

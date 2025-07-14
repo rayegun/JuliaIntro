@@ -2,7 +2,7 @@
 Add here global page variables to use throughout your website.
 -->
 +++
-author = "G. Dalle, J. Smit, A. Hill"
+author = "Raye Skye Kimmerer"
 mintoclevel = 2
 maxtoclevel = 2
 
@@ -13,12 +13,14 @@ maxtoclevel = 2
 ignore = [
     "node_modules/",
     "CONTRIBUTING.md",
+    "optimizing",
+    "sharing"
 ]
 
 # RSS (the website_{title, descr, url} must be defined to get RSS)
-generate_rss = true
-website_title = "Modern Julia Workflows"
-website_descr = "Blog posts on best practices for Julia development"
+generate_rss = false
+website_title = "Quantum Numerics Julia Intro"
+website_descr = ""
 website_url   = "https://modernjuliaworkflows.org/"
 +++
 
@@ -41,4 +43,17 @@ Add here global latex commands to use throughout your pages.
   @@vscode
   **VSCode**: !#1
   @@
+}
+
+\newcommand{\important}[2]{
+  @@important
+  **Important** - **#1**
+  #2
+  @@
+}
+
+\newcommand{\tutorial}[1]{
+  *To ensure code in this tutorial runs as shown, download the tutorial [project folder](\tgz{#1})
+
+  \toc\literate{/_literate/!#1/tutorial.jl}
 }
