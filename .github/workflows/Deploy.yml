@@ -14,4 +14,4 @@ jobs:
         uses: tlienart/xranklin-build-action@main
         with:
           DEPLOY: ${{ github.event_name == 'push' }}
-          BASE_URL_PREFIX: "env.REPO_PREFIX"
+          BASE_URL_PREFIX: "rayegun"
