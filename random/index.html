@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/JuliaIntro/libs/highlight/styles/github.min.css">
+   
+  <link rel="stylesheet" href="/JuliaIntro/css/franklin.css">
+<link rel="stylesheet" href="/JuliaIntro/css/poole_hyde.css">
+<link rel="stylesheet" href="/JuliaIntro/css/custom.css">
+<link rel="stylesheet" href="/JuliaIntro/libs/highlight/styles/github-dark.min.css">
+
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+
+   <title>Well I'm out of content so...</title>  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="/JuliaIntro/">QNumerics</a></h1>
+      <div class="logo-container">
+        <img src="/JuliaIntro/assets/qnumerics-logo.png" alt="QNumerics Logo" class="logo-img">
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item " href="/JuliaIntro/">Home</a>			  
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/JuliaIntro/#goals" class="menu-list-link">Goals</a>
+        <li class="menu-list-item"><a href="/JuliaIntro/#contents" class="menu-list-link">Contents</a>
+        <li class="menu-list-item"><a href="/JuliaIntro/#before_you_start" class="menu-list-link">Before you start</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/JuliaIntro/startup/">Setting Up Environment</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/JuliaIntro/writing/#git" class="menu-list-link">Git</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/writing/#vscode" class="menu-list-link">Visual Studio Code</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/writing/#julia_+_vscode" class="menu-list-link">Julia + VSCode</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/writing/#tips_tricks" class="menu-list-link">Tips & Tricks</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/JuliaIntro/juliabasics/">First Steps</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#environments" class="menu-list-link">Environments</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#arrays!" class="menu-list-link">Arrays!</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/JuliaIntro/types/">Types</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#the_type_tree" class="menu-list-link">Type Trees</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#structs" class="menu-list-link">Structs</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#mutable_structs" class="menu-list-link">Mutable Structs</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#parametric_types" class="menu-list-link">Parametric Types</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#tuples" class="menu-list-link">Tuples</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#advanced_topics" class="menu-list-link">Advanced Topics</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/JuliaIntro/dispatch/">Multiple Dispatch</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+    </nav>
+    <p class="copyright-notice">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io/blob/main/LICENSE">
+        &copy; Raye Skye Kimmerer.
+      </a>
+    </p>
+    <div class="github-link">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28px" fill="currentColor" viewBox="0 0 496 512">
+          
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="content container">
+
+
+<script src="/JuliaIntro/libs/clipboard.min.js"></script>
+<div class="franklin-content" >
+  <h1 id="well_i'm_out_of_content_so..." ><a href="#well_i'm_out_of_content_so..."> Well I'm out of content so...</a></h1><h2 id="a_few_random_notes" ><a href="#a_few_random_notes"> A few random notes:</a></h2><p>Miscellaneous things I didn't mention</p>
+<h3 id="the_compiler_and_the_user_can_both_generate_methods" ><a href="#the_compiler_and_the_user_can_both_generate_methods"> The compiler and the user can both generate methods</a></h3><div class="important"><p><strong>Important</strong> - <strong>You <em>and</em> the compiler generate specializations</strong></p>
+<pre><code class="julia">foo(a, b) = a * b + 2</code></pre>
+<p>Will be fully specialized on input arguments when called.
+It won't appear in <code>methods</code> though.</p>
+</div><h3 id="avoiding_ambiguities" ><a href="#avoiding_ambiguities"> Avoiding ambiguities:</a></h3><pre><code class="julia">-(A::AbstractArray&lbrace;T&rbrace;, b::Date) where &lbrace;T&lt;:Date&rbrace;</code></pre>
+<p>will cause ambiguities with:</p>
+<pre><code class="julia">-(A::MyArrayType&lbrace;T&rbrace;, b::T) where &lbrace;T&rbrace;</code></pre>
+<h3 id="high_crimes_and_misdemeanors" ><a href="#high_crimes_and_misdemeanors"> High crimes and misdemeanors:</a></h3><p><em><strong>Type piracy shall not be abided</em></strong> (well maybe a little sometimes)</p>
+<pre><code class="julia">module A
+import Base.*
+*(x::Symbol, y::Symbol) = Symbol(x,y)
+end</code></pre>
+<h3 id="type_assertions" ><a href="#type_assertions"> Type assertions </a></h3><p>Hopefully you've got some high level semantics of the language down.</p>
+<p>I want to emphasize something I sort of alluded to, but maybe didn't say super explicitly:</p>
+<div class="important"><p><strong>Important</strong> - <strong>Separating Functions and Data <em><strong>implies</em></strong> multiple dispatch</strong></p>
+</div><h2 id="some_notebooks_we'll_peruse_together" ><a href="#some_notebooks_we'll_peruse_together"> Some notebooks we'll peruse together:</a></h2><a href="https://mitmath.github.io/Parallel-Computing-Spoke/notebooks/PerformantSerialJulia.html">Performant Serial Code</a><a href="https://vchuravy.dev/talks/Going_fast_nowhere/">Going Fast Nowhere</a><a href="https://mit-c25-fall23.netlify.app/homeworks/hw1-2024">Gotta Dispatch em all</a>
+  <div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+</div>
+
+</div>
+
+    </div>  
+    
+    
+        <script src="/JuliaIntro/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>
+
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
