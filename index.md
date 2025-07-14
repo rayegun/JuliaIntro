@@ -2,9 +2,7 @@
 title = "Home"
 +++
 
-# Julia Intro for QNumerics
-
-
+# Julia Intro for QNumerics Summer School
 
 \toc
 
