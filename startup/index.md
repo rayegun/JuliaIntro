@@ -14,7 +14,12 @@ ignore_cache = true
 
 ## Git
 \tldr{Visit [education.github.com](https://education.github.com/git-cheat-sheet-education.pdf) for a nice cheatsheet}
-The most we will likely need to do is 
+
+The most we will likely need to do is pull from various GitHub repos. For instance to get started with this sessions we will do
+```bash
+git clone https://github.com/rayegun/JuliaIntro.git
+```
+
 ## VSCode
 \tldr{Install `VSCode` from [code.visualstudio.com/](https://code.visualstudio.com/)}
 
