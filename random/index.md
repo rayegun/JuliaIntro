@@ -55,3 +55,6 @@ I want to emphasize something I sort of alluded to, but maybe didn't say super e
 [Going Fast Nowhere](https://vchuravy.dev/talks/Going_fast_nowhere/)
 
 [Gotta Dispatch em all](https://mit-c25-fall23.netlify.app/homeworks/hw1-2024)
+
+## Compilation
+\image{Compilation Pipeline}{/assets/images/compilation.png}{width:100%}
