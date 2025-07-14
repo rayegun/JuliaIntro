@@ -9,12 +9,14 @@ title = "Home"
 ## What is Julia?
 Julia is a high-level, general-purpose programming language that is well suited for numerics, computational science, and scientific computing.
 
+\image{Julia Homepage}{/assets/images/homepage.png}{width:100%}
+
 ## Why Julia?
 
-### 2-language Problem
+### Solve the 2-language Problem
 
 
-\image{Who is Julia for?}{/assets/images/comic.png}{width:120%}
+\image{Who is Julia for?}{/assets/images/comic.png}{width:100%}
 
 The scientific, artificial intelligence, and research computing world has a two language problem
 1. Most scientists use "simpler" but ***slow*** languages like Python or Matlab
@@ -26,7 +28,7 @@ The end result?
   - Try changing Tensorflow or MATLAB internals!
 - Lost performance at the interface of libraries like PyTorch and the C++ backends
 
-### Expression Problem
+### Solve the Expression Problem
 
 > "To which degree can your application be structured in such a way that both:
 > \\
@@ -36,7 +38,7 @@ The end result?
 > (2) &nbsp;&nbsp;&nbsp;&nbsp;and the set of ***virtual operations*** over it  
 > \\
 > \\
-> can be extended without the need to modify existing code, without the need for code repetition and without runtime type errors." -- Mads Torgersen, "The Expression Problem Revisited"
+> can be extended without the need to modify existing code, without the need for code repetition and without runtime type errors." \\-- Mads Torgersen, "The Expression Problem Revisited"
 
 The expression effectively states the difficulty of allowing:
 1. New types to be added to existing operations
@@ -53,14 +55,24 @@ without changing code.
 
 More on this later, but multiple dispatch allows anyone to add new functions to existing types and new types to existing functions *with no interaction*!
 
-### Fast ***can*** be simple:
+### Complexity $\ne$ Speed:
 
 \image{Computer Language Benchmark Game}{/assets/images/clbg.png}{width:100%}
 
 
 ### Package Management
 
-### Code rarely looks like the underlying math
+Package management in many languages like Python or even worse C / C++ hampers collaboration, productivity, and itself contributes to the expression problem!
+
+Modern package managers like those in Julia (Pkg.jl) and Rust (Cargo) give:
+1. Ease of access without struggle
+2. Clear versioning
+3. Trivial collaboration
+4. And most importantly ***reproducibility***
+
+### Code can look more like the math
+
+
 
 
 ## Julia vs. Other Languages

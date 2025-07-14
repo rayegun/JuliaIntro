@@ -15,7 +15,7 @@ ignore_cache = true
 
 ## Package Management
 
-## Basic Syntax
+# Basic Syntax
 Julia has a fairly simple syntax which is:
 1. "Close to the math" so that code resembles the equivalent algorithm in plain math or pseudocode. Unicode symbols can help get even closer to math notation.
 2. Avoids too much unique syntax / keywords in favor of macros
@@ -29,11 +29,32 @@ Keep this in mind as we go through the code.}
 
 That covers most of the basic syntax we will need to get started. 
 
-## Raye's Arrays!
+## A note on scope
+Variables or names are part of a scope:
+```>
+x = 5
+foo(y, z) = x + y + z # x is available from global scope
+foo(10, 20)
+bar(x, y) = x - y # x is "shadowed" by the argument
+bar(10, 3)
+```
+
+```>
+module Mod
+    x, y, z = (1, 2, 3)
+    foo(z) = println(x, y, z)
+end
+import .Mod
+x = 50
+Mod.foo(10)
+```
+
+## Arrays!
 Forgive the section title 😇
 
 \literate{./_literate/arrays.jl; project=./notebooks/}
 
+# A bit of fun
 
 ## Tips Tricks and Conventions
 
