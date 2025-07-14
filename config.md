@@ -21,7 +21,7 @@ ignore = [
 generate_rss = false
 website_title = "Quantum Numerics Julia Intro"
 website_descr = ""
-website_url   = "https://modernjuliaworkflows.org/"
+website_url   = "https://rayegun.github.io/JuliaIntro/"
 +++
 
 <!--

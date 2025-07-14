@@ -14,6 +14,7 @@ ignore_cache = true
 
 ## Git
 \tldr{Visit [education.github.com](https://education.github.com/git-cheat-sheet-education.pdf) for a nice cheatsheet}
+The most we will likely need to do is 
 ## VSCode
 \tldr{Install `VSCode` from [code.visualstudio.com/](https://code.visualstudio.com/)}
 
