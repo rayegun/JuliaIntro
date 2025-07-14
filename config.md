@@ -66,3 +66,11 @@ Add here global latex commands to use throughout your pages.
 </figure>
 ~~~
 }
+\newcommand{\image30}[2]{
+~~~
+<figure style="text-align:center;">
+<img src="!#2" style="padding:0;width:30%" alt="#1"/>
+<figcaption>#1</figcaption>
+</figure>
+~~~
+}

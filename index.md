@@ -15,7 +15,6 @@ Julia is a high-level, general-purpose programming language that is well suited 
 
 ### Solve the 2-language Problem
 
-
 \image{Who is Julia for?}{/assets/images/comic.png}{width:100%}
 
 The scientific, artificial intelligence, and research computing world has a two language problem
@@ -70,15 +69,15 @@ Modern package managers like those in Julia (Pkg.jl) and Rust (Cargo) give:
 3. Trivial collaboration
 4. And most importantly ***reproducibility***
 
-### Code can look more like the math
-
-
-
-
 ## Julia vs. Other Languages
 
-### Python
+Other than plain ol' C I don't know too much about other languages
 
+### Python
+- Python is ***too*** dynamic and so it can never be particularly fast.
 ### C++
+- At MIT the community somewhat fondly somewhat derisively calls Julia "C++ if it was normal"
 
 ## Other Resources
+- [The Julia Manual](https://docs.julialang.org/en/v1/)
+- [Modern Julia Workflows](https://modernjuliaworkflows.org/)

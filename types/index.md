@@ -5,7 +5,7 @@ ignore_cache = true
 # Types, What Are They Good For?
 \toc
 
-\activate{notebooks/}
+\activate{./}
 ```!
 using InteractiveUtils # hide
 ```

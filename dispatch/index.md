@@ -5,7 +5,7 @@ ignore_cache = true
 
 <!-- Setup -->
 
-\activate{notebooks/}
+\activate{./}
 
 # The Promised Land: Multiple Dispatch
 
