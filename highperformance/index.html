@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <link rel="stylesheet" href="/env.REPO_PREFIX/css/franklin.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/css/poole_hyde.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/css/custom.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/libs/highlight/styles/github-dark.min.css">
+
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+
+   <title></title>  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="/env.REPO_PREFIX/">QNumerics</a></h1>
+      <div class="logo-container">
+        <img src="/env.REPO_PREFIX/assets/qnumerics-logo.png" alt="QNumerics Logo" class="logo-img">
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/">Home</a>			  
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#goals" class="menu-list-link">Goals</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#contents" class="menu-list-link">Contents</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#before_you_start" class="menu-list-link">Before you start</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/startup/">Setting Up Environment</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#git" class="menu-list-link">Git</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#vscode" class="menu-list-link">Visual Studio Code</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#julia_+_vscode" class="menu-list-link">Julia + VSCode</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#tips_tricks" class="menu-list-link">Tips & Tricks</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/juliabasics/">First Steps</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/types/">Types</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/types/">Multiple Dispatch</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/sharing/">Sharing</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#setup" class="menu-list-link">Setup</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#github_actions" class="menu-list-link">GitHub Actions</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#testing" class="menu-list-link">Testing</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#style" class="menu-list-link">Style</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#code_quality" class="menu-list-link">Code quality</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#documentation" class="menu-list-link">Documentation</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#literate_programming" class="menu-list-link">Literate programming</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#versions_and_registration" class="menu-list-link">Versions and registration</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#reproducibility" class="menu-list-link">Reproducibility</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#interoperability" class="menu-list-link">Interoperability</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#collaboration" class="menu-list-link">Collaboration</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/optimizing/">Optimizing</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#principles" class="menu-list-link">Principles</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#measurements" class="menu-list-link">Measurements</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#profiling" class="menu-list-link">Profiling</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#type_stability" class="menu-list-link">Type stability</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#memory_management" class="menu-list-link">Memory management</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#compilation" class="menu-list-link">Compilation</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#parallelism" class="menu-list-link">Parallelism</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#efficient_types" class="menu-list-link">Efficient types</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/further/">Going further</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#official" class="menu-list-link">Official</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#tutorials" class="menu-list-link">Tutorials</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#blogs" class="menu-list-link">Blogs</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#videos" class="menu-list-link">Videos</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#lore" class="menu-list-link">Lore</a>
+      </ul>
+    </nav>
+    <p class="copyright-notice">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io/blob/main/LICENSE">
+        &copy; Raye Skye Kimmerer.
+      </a>
+    </p>
+    <div class="github-link">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28px" fill="currentColor" viewBox="0 0 496 512">
+          
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="content container">
+
+
+<div class="franklin-content" >
+  
+  <div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+</div>
+
+</div>
+
+    </div>  
+    
+    
+  </body>
+</html>

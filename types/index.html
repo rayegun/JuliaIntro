@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/env.REPO_PREFIX/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="/env.REPO_PREFIX/libs/highlight/styles/github.min.css">
+   
+  <link rel="stylesheet" href="/env.REPO_PREFIX/css/franklin.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/css/poole_hyde.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/css/custom.css">
+<link rel="stylesheet" href="/env.REPO_PREFIX/libs/highlight/styles/github-dark.min.css">
+
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+
+   <title>First Steps</title>  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="/env.REPO_PREFIX/">QNumerics</a></h1>
+      <div class="logo-container">
+        <img src="/env.REPO_PREFIX/assets/qnumerics-logo.png" alt="QNumerics Logo" class="logo-img">
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/">Home</a>			  
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#goals" class="menu-list-link">Goals</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#contents" class="menu-list-link">Contents</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/#before_you_start" class="menu-list-link">Before you start</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/startup/">Setting Up Environment</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#git" class="menu-list-link">Git</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#vscode" class="menu-list-link">Visual Studio Code</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#julia_+_vscode" class="menu-list-link">Julia + VSCode</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/writing/#tips_tricks" class="menu-list-link">Tips & Tricks</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/juliabasics/">First Steps</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item active" href="/env.REPO_PREFIX/types/">Types</a>
+        <ul class="menu-list-child-list active">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/types/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/types/">Multiple Dispatch</a>
+        <ul class="menu-list-child-list ">
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#package_management" class="menu-list-link">Package Management</a>
+          <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+        </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/sharing/">Sharing</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#setup" class="menu-list-link">Setup</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#github_actions" class="menu-list-link">GitHub Actions</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#testing" class="menu-list-link">Testing</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#style" class="menu-list-link">Style</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#code_quality" class="menu-list-link">Code quality</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#documentation" class="menu-list-link">Documentation</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#literate_programming" class="menu-list-link">Literate programming</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#versions_and_registration" class="menu-list-link">Versions and registration</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#reproducibility" class="menu-list-link">Reproducibility</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#interoperability" class="menu-list-link">Interoperability</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#collaboration" class="menu-list-link">Collaboration</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/optimizing/">Optimizing</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#principles" class="menu-list-link">Principles</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#measurements" class="menu-list-link">Measurements</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#profiling" class="menu-list-link">Profiling</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#type_stability" class="menu-list-link">Type stability</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#memory_management" class="menu-list-link">Memory management</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#compilation" class="menu-list-link">Compilation</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#parallelism" class="menu-list-link">Parallelism</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#efficient_types" class="menu-list-link">Efficient types</a>
+      </ul>
+      
+      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/further/">Going further</a>
+      <ul class="menu-list-child-list ">
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#official" class="menu-list-link">Official</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#tutorials" class="menu-list-link">Tutorials</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#blogs" class="menu-list-link">Blogs</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#videos" class="menu-list-link">Videos</a>
+        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#lore" class="menu-list-link">Lore</a>
+      </ul>
+    </nav>
+    <p class="copyright-notice">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io/blob/main/LICENSE">
+        &copy; Raye Skye Kimmerer.
+      </a>
+    </p>
+    <div class="github-link">
+      <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28px" fill="currentColor" viewBox="0 0 496 512">
+          
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="content container">
+
+
+<div class="franklin-content" >
+  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#basic_syntax">Basic Syntax</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><h2 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h2><p>Julia has a fairly simple syntax which is:</p>
+<ol>
+<li>"Close to the math" so that code resembles the equivalent algorithm in plain math or pseudocode. Unicode symbols can help get even closer to math notation.</li>
+<li>Avoids too much unique syntax / keywords in favor of macros</li>
+<li>Familiar (enough) to users of MATLAB or Python</li>
+</ol>
+<div class="important"><p><strong>Important</strong> - <strong>Everything in Julia is an <em>expression</em>:</strong>
+(Almost) every piece of syntax in Julia is an <em><strong>expression</em></strong>. That means that is has an associated <em><strong>value</em></strong>. For instance the expression <code>2 + 2</code> has the value <code>4</code>.
+<br>
+
+Keep this in mind as we go through the code.</p>
+</div><h2 id="loading_packages" ><a href="#loading_packages"> Loading packages</a></h2><p>Before we get into basic syntax we will need a few packages for this tutorial.
+While you can load packages at any top-level scope, it's best practice to do so at the beginning of your file, package, or notebook.</p>
+<pre><code class="julia">using LinearAlgebra, Random, CairoMakie # for plotting</code></pre>
+<h2 id="literals_and_variables" ><a href="#literals_and_variables"> Literals and Variables</a></h2><p>A literal is a representation of some data directly in code. For instance:</p>
+<pre><code class="julia">4</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4</code></pre></div><p>is the literal for the 64-bit Integer number \(4\).
+<br>
+
+<strong>Note:</strong> Since this is an expression is has a value of 4.
+Notebooks and the REPL will automatically print out the value of an expression (or the last expression in a code block), <em>unless</em> the value of an expression is the special constant:</p>
+<pre><code class="julia">nothing</code></pre>
+<p>The other way to suppress the output of an expression is to use <code>;</code> character which can also be used to delimit multiple statements on a single line.</p>
+<pre><code class="julia">5; 6; 7;</code></pre>
+<p>Other literals include:</p>
+<pre><code class="julia">&quot;Howdy folks!&quot;; # string
+3.14159265     # floating point (Float64)
+true           # Boolean
+[1, 2, 3, 4]   # Vector of Int64</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4</code></pre></div><pre><code class="julia">(1, 3.14159, &quot;Quantum? Never met 'em!&quot;) # A Tuple (an immutable fixed length collection)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">(1, 3.14159, "Quantum? Never met 'em!")</code></pre></div><p>Now that we have literals we might like to give them a name.
+We can assign literals (and any other data) to a variable, which is simply a named value:</p>
+<pre><code class="julia">a = [1,2,3,4]
+w = 10
+y = true</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">true</code></pre></div><p>We can interpolate into strings by either <code>$y</code> or <code>$(w + 2)</code> for more complex expressions</p>
+<pre><code class="julia">x = &quot;Are are at UMass Amherst? $y&quot;</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">"Are are at UMass Amherst? true"</code></pre></div><p>Assignments are an expression whose value is the right-hand-side.
+This lets us, among other things, chain assignments:</p>
+<pre><code class="julia">i = j = 5; # both i and j are equal to 5
+@show i j</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 5
+j = 5
+</code></pre></div><p>Variables are not constrained to a particular type.</p>
+<pre><code class="julia">x = 13.5 # reassign x to a different type.</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">13.5</code></pre></div><p>Julia has support for Unicode variable names.
+In VSCode and the REPL we can use autocompletion such as <code>\Sigma</code>-TAB-<code>\hat</code>-TAB-<code>\^2</code>-TAB</p>
+<pre><code class="julia">Σ̂² = 1.0;</code></pre>
+<p>There is complete support for all of Unicode, so that means we have emoji as well!</p>
+<pre><code class="julia">😳 = 5 # `\:flushed`-TAB
+⚛️ = &quot;Quantum Numerics!&quot; # I don't think this has an autocomplete yet 🤔</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">"Quantum Numerics!"</code></pre></div><p>Julia allows for <em>numeric</em> literals to be <strong>immediately</strong> followed by a variable, which results in multiplication:</p>
+<pre><code class="julia">3x</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">40.5</code></pre></div><p>This helps us write long equations very nicely:</p>
+<pre><code class="julia">4(x + 3)^2 - 10</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">1079.0</code></pre></div><p>This functionality is also used for complex number literals, with the global constant <code>im</code>:</p>
+<pre><code class="julia">10 + 3im</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">10 + 3im</code></pre></div><h2 id="operators_and_functions" ><a href="#operators_and_functions"> Operators and Functions</a></h2><p>Like most languages Julia has two syntaxes for operating on values: operators and function calls.</p>
+<h3 id="operators" ><a href="#operators"> Operators</a></h3><pre><code class="julia">w + x + Σ̂²</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">24.5</code></pre></div><pre><code class="julia">2 ^ 5 # exponentiation</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">32</code></pre></div><p>There are also Unicode operators, for instance this is integer division:</p>
+<pre><code class="julia">5 ÷ 2 # (`5 \div`-TAB-`2`)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2</code></pre></div><pre><code class="julia">∛8 # `\cbrt`-TAB-`8`</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2.0</code></pre></div><p>The boolean operators are:</p>
+<pre><code class="julia">!y # negation
+false &amp;&amp; y # short circuiting and
+y || true # short circuiting or</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">true</code></pre></div><p>The <code>&lt;op&gt;=</code> operators update a variable, such as:</p>
+<pre><code class="julia">w += 3</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">13</code></pre></div><h3 id="functions" ><a href="#functions"> Functions</a></h3><p>Functions are called much as they are in other languages like Python:</p>
+<pre><code class="julia">sin(2x)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">0.956375928404503</code></pre></div><pre><code class="julia">length(a)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4</code></pre></div><pre><code class="julia">complex(1.0, 10)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">1.0 + 10.0im</code></pre></div><p>There are three syntaxes for defining functions. The first two produce named functions, and we'll get to the third in a moment.
+The general form is:</p>
+<pre><code class="julia">function foo(x, y)
+    # we don't actually need the `return` here
+    # the last expression is returned by default
+    return x + y
+end</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">foo (generic function with 1 method)</code></pre></div><p>and the terse form which is typically used if your function is a single expression:</p>
+<pre><code class="julia">bar(x, y) = x + y</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">bar (generic function with 1 method)</code></pre></div><p>We can call this function as above:</p>
+<pre><code class="julia">@show foo(w, x) == bar(w, x)</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">foo(w, x) == bar(w, x) = true
+</code></pre></div><h4 id="keyword_and_optional_arguments" ><a href="#keyword_and_optional_arguments"> Keyword and optional arguments</a></h4><p>We can add "keyword" arguments to a function by placing them after a semicolon in the arguments:</p>
+<pre><code class="julia">function mykwargs(a; b)
+    a ^ b
+end;</code></pre>
+<p>Both positional arguments and keyword arguments can be made optional by providing a default value.
+Ignore the <code>@show</code> for now we'll get to that later, it prints out the expression and its result.</p>
+<pre><code class="julia">function myoptionalfunc(a = 2; b = 3)
+    a ^ b
+end
+@show myoptionalfunc()
+@show myoptionalfunc(b = 3)
+@show myoptionalfunc(5)
+@show myoptionalfunc(5, b = 2)</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">myoptionalfunc() = 8
+myoptionalfunc(b = 3) = 8
+myoptionalfunc(5) = 125
+myoptionalfunc(5, b = 2) = 25
+</code></pre></div><p>Operators are "just" functions with support for infix notation (except <code>&amp;&amp;</code> and <code>||</code> which uniquely short circuit)</p>
+<pre><code class="julia">+(1, 2, 3, 4)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><pre><code class="julia">f = *
+f(1, 2, 3)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">6</code></pre></div><h4 id="functions_are_data" ><a href="#functions_are_data"> Functions are data</a></h4><p>Just like strings or vectors and can be assigned to variables:</p>
+<pre><code class="julia">baz = foo
+baz(w, x)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">26.5</code></pre></div><p>They can also be passed to other functions:</p>
+<pre><code class="julia">map(sin, [1.0, 2.0, π])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Float64}:
+ 0.8414709848078965
+ 0.9092974268256817
+ 1.2246467991473532e-16</code></pre></div><h4 id="anonymous_functions" ><a href="#anonymous_functions"> Anonymous functions</a></h4><p>The third syntax for defining a function is for so-called anonymous functions (functions without a name)</p>
+<pre><code class="julia">x -&gt; 5x + (x - 1)^2</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">#3 (generic function with 1 method)</code></pre></div><p>Of course we didn't give it a name, so now we have no way to reference it!
+These are most often used to pass to "higher-order" functions (functions that accept other functions as arguments):</p>
+<pre><code class="julia">map(x -&gt; 5x + (x - 1)^2, a)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
+  5
+ 11
+ 19
+ 29</code></pre></div><p>For anonymous functions with multiple arguments the syntax looks like this:</p>
+<pre><code class="julia">(x, y, z) -&gt; x/3 + y^3 + z^2</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">#7 (generic function with 1 method)</code></pre></div><p>or with zero arguments like this:</p>
+<pre><code class="julia">() -&gt; 2 + 2</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">#9 (generic function with 1 method)</code></pre></div><h3 id="broadcasting" ><a href="#broadcasting"> Broadcasting</a></h3><p>We often encounter situations where we want to call a function such as <code>sin</code>
+over all elements of a collection like a <code>Vector</code>.
+In order to make this ergonomic Julia supports a generalized "broadcasting" syntax:</p>
+<pre><code class="julia">sin.([1, 2, 3])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Float64}:
+ 0.8414709848078965
+ 0.9092974268256817
+ 0.1411200080598672</code></pre></div><p>Any function can be suffixed with a <code>.</code> in order to broadcast it elementwise over each value in a collection.
+This also works elementwise, for instance:</p>
+<pre><code class="julia">complex.([1, 2, 3], [10, 20, 30])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Complex{Int64}}:
+ 1 + 10im
+ 2 + 20im
+ 3 + 30im</code></pre></div><p>or with operators in infix form:</p>
+<pre><code class="julia">[1, 2, 3] .+ [4, 5, 6]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 5
+ 7
+ 9</code></pre></div><h2 id="control_flow" ><a href="#control_flow"> Control Flow</a></h2><p>We now know how to define variables, call functions and operators, and define basic functions.
+For a bit of a break let's look at the following function which computes a single point in the mandelbrot set to get a sense for control flow:</p>
+<pre><code class="julia">function mandel(z)
+	c = z
+	maxiter = 80
+	for n in 1:maxiter
+	  if abs(z) &gt; 2
+		  return n-1
+	  end
+	  z = z^2 + c
+	end
+	return maxiter
+end;</code></pre>
+<p>We need a complex plane to compute the set on:</p>
+<pre><code class="julia">resolution = 0.02
+reals = -2:resolution:1 # range from -2 to 1 with step size of 0.02
+imgs = -1:resolution:1
+plane = [complex(re, img) for (re, img) in Iterators.product(reals, imgs)];
+results = mandel.(plane);</code></pre>
+<p>We're going to use a package called CairoMakie to plot the result:</p>
+<pre><code class="julia">CairoMakie.heatmap(results)</code></pre>
+<div class="code-output"><img class="code-figure" src="/env.REPO_PREFIX/assets/types/index/figs-html/__autofig_2322465883030802333.svg">
+</div><p>Let's break down some of the expressions we saw above:</p>
+<h3 id="conditionals" ><a href="#conditionals"> Conditionals</a></h3><p>We have a conditional block above which tests whether <code>abs(z) &gt; 2</code>.
+A general control flow block looks something like:</p>
+<pre><code class="julia">x = 5; y = 10; z = true
+if x &lt; y
+    println(&quot;Small x!&quot;)
+elseif x == y
+    println(&quot;x and y are equal!&quot;)
+else
+    println(&quot;Big x!&quot;)
+end</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">Small x!
+</code></pre></div><p>Many languages have a ternary expression, for a short way to evaluate a two way conditional:</p>
+<pre><code class="julia">println(x &lt; y ? &quot;x is less than y!&quot; : &quot;x is greater than or equal to y!&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">x is less than y!
+</code></pre></div><p>Julia users really like to keep code compact, so there is one additional conditional expression you might see:</p>
+<pre><code class="julia">x &lt; y &amp;&amp; println(&quot;x was less than y!&quot;)
+
+x &lt; y || println(&quot;I don't get here if x &lt; y!&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">x was less than y!
+</code></pre><pre><code class="code-result language-plaintext">true</code></pre></div><p>It's important to note that conditional expressions (like <code>if-elseif-else</code>) are <em>short-circuiting</em>.
+This means that in the expression:</p>
+<pre><code class="julia">a &amp;&amp; b</code></pre>
+<p><code>b</code> is only evaluated if <code>a</code> is <code>true</code>!
+Similarly in</p>
+<pre><code class="julia">a || b</code></pre>
+<p><code>b</code> will only be evaluated if <code>a = false</code></p>
+<h3 id="loops" ><a href="#loops"> Loops</a></h3><p>Our <code>mandelbrot</code> function also has a <code>for</code> loop iterating over the range <code>1:maxiter</code>.</p>
+<p>There are two loop constructs in Julia. <code>while</code> loops:</p>
+<pre><code class="julia">i = 1;
+while i &lt;= 5
+    println(&quot;i = $i&quot;)
+    i += 1
+end</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 1
+i = 2
+i = 3
+i = 4
+i = 5
+</code></pre></div><p>and <code>for</code> loops (note that <code>i</code> is local to the <code>for</code> loop block, unlike with the <code>while</code> above):</p>
+<pre><code class="julia">for i in 1:2:9
+    println(&quot;i = $i&quot;)
+end</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 1
+i = 3
+i = 5
+i = 7
+i = 9
+</code></pre></div><p><code>for</code> loops can iterate over many different containers, including the <code>Vector</code>s, <code>Tuple</code>s,
+<code>StepRange</code>s like <code>1:2:9</code>, <code>UnitRange</code>s like <code>1:10</code> and more.</p>
+<p>Instead of the <code>in</code> keyword we can also use <code>=</code> and <code>∈</code> (<code>\in</code>-TAB).</p>
+<p>When we are looping over containers like <code>Vector</code>s it's important to be sure we know what we are looping over!
+We will get to indexing when we talk about arrays in the next section, but for now we can index a <code>Vector</code> as follows:</p>
+<pre><code class="julia">emojis = [&quot;🤔&quot;, &quot;⚛️&quot;, &quot;💻&quot;];
+@show emojis[1]
+@show emojis[3]</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">emojis[1] = &quot;🤔&quot;
+emojis[3] = &quot;💻&quot;
+</code></pre></div><p>Notice that Julia is (<strong>generally</strong>) 1-based, <strong>not</strong> 0 based!</p>
+<pre><code class="julia">println(&quot;Iterating over each value:&quot;)
+for i ∈ emojis
+    println(i)
+end
+
+println(&quot;Iterating over the indices:&quot;)
+for i ∈ 1:length(emojis)
+    println(i)
+end
+
+println(&quot;Iterating over the indices but printing value:&quot;)
+for i ∈ eachindex(emojis)
+    println(emojis[i])
+end</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">Iterating over each value:
+🤔
+⚛️
+💻
+Iterating over the indices:
+1
+2
+3
+Iterating over the indices but printing value:
+🤔
+⚛️
+💻
+</code></pre></div><p>Notice that we switched to using <code>eachindex</code> instead of <code>length</code>. Can you guess why?</p>
+<h4 id="break_and_continue" ><a href="#break_and_continue"> <code>break</code> and <code>continue</code></a></h4><p>If you need to stop a loop early the <code>break</code> keyword will immediately terminate a loop.
+If you need to skip an iteration the <code>continue</code> keyword will immediately start the next iteration of the loop.</p>
+<pre><code class="julia">for i ∈ emojis
+    i == &quot;⚛️&quot; &amp;&amp; continue
+    println(i)
+end</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">🤔
+💻
+</code></pre></div><p>That covers most of the basic syntax we will need to get started. </p>
+<h2 id="tips_tricks_and_conventions" ><a href="#tips_tricks_and_conventions"> Tips Tricks and Conventions</a></h2><h3 id="can't_figure_out_how_to_type_a_unicode_character?" ><a href="#can't_figure_out_how_to_type_a_unicode_character?"> Can't figure out how to type a Unicode character?</a></h3><p>We will be using lots of Unicode characters throughout the week. If you can't figure out how to type a character, but you're able to copy and paste it into the REPL you can use the <code>help</code> REPL we discussed earlier:</p>
+<pre><code class="julia">help?&gt; 🤔</code></pre>
+<h3 id="13633231208144796923" ><a href="#13633231208144796923"> </a></h3>
+  <div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+</div>
+
+</div>
+
+    </div>  
+    
+        <script src="/env.REPO_PREFIX/libs/katex/katex.min.js"></script>
+<script src="/env.REPO_PREFIX/libs/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+        <script src="/env.REPO_PREFIX/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>
