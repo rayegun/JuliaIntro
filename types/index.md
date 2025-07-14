@@ -3,8 +3,29 @@ title = "Types, What Are They Good For?"
 ignore_cache = true
 +++
 # Types, What Are They Good For?
+
+There are a few important features of Julia's type system we'll mention here up-front as they do in the [Manual](https://docs.julialang.org/en/v1/manual/types/)
+
+### All values have a single concrete concrete type which is a leaf of a single global type tree. All types are "first-class"
+
+Some languages such as Java have a distinction between certain primitive types like `Int64` and classes. While Julia does have primitive and non-primitive types:
+```>
+isprimitivetype(Int64)
+isprimitivetype(Vector{String})
+```
+The user experiences no difference, the distinction is purely for bootstrapping.
+
+### Julia has no distinction between a "compile-time type" and a "run-time type". A value has a single concrete type, and it never loses this type ***ever***
+
+We'll explain this more in a bit, but in short 
+
+- Variables are just names, and are untyped
+- 
 \activate{notebooks/}
-```julia
+```!
+using InteractiveUtils # hide
+```
+```!
 using AbstractTrees
 ```
 
@@ -50,8 +71,16 @@ You may know of inheritance from a language like Java or C++, or even Python. In
 
 On the other hand Julia has a tree of abstract types, with what we call ***concrete*** types on the leaves:
 
-```julia
+```!
 AbstractTrees.children(x::Type) = subtypes(x)
 
+# All of the subtypes of the abstract type Number in a tree
 print_tree(Number)
 ```
+
+Let's explore this type tree a little bit. At the top we have:
+```?
+Number
+```
+
+Since `Number` is not a leaf on our tree it is an ***abstract type*** 
