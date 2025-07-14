@@ -73,6 +73,9 @@
           <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#package_management" class="menu-list-link">Package Management</a>
           <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
         </ul>
+      <a class="sidebar-nav-item " href="/JuliaIntro/random/">Random</a>
+        <ul class="menu-list-child-list ">
+        </ul>
     </nav>
     <p class="copyright-notice">
       <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io/blob/main/LICENSE">
@@ -147,7 +150,7 @@ Pkg.jl allows you to:</p>
 <span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Manifest.toml`
   <span class="sgr90">[7876af07] </span><span class="sgr92">+ Example v0.5.5</span>
 Precompiling project...
-    378.6 ms  ✓ Example
+    399.8 ms  ✓ Example
   1 dependency successfully precompiled in 1 seconds. 303 already precompiled.
 </code></pre>
 <pre><code class="julia-repl"><span class="sgr34"><span class="sgr1">(JuliaIntro) pkg&gt;</span></span> status
@@ -555,14 +558,14 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">"asdf"</code></pre></div><p>The most basic array constructors:</p>
 <pre><code class="julia">Vector&lbrace;Int64&rbrace;(undef, 5) # 5 element Vector</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
- 7651104985323564661
- 7161128231295872117
- 7950312889861497195
- 5568471607139529833
-       1518039793748</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
+ 140505217305184
+ 140505217305184
+               0
+               0
+    429578837520</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×3 Matrix{Float32}:
- 0.0  0.0  -6.49825f-34
- 0.0  0.0   4.5769f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
+ 3.63319f-13  8.0f-45   3.43128f-13
+ 4.5842f-41   1.56f-43  4.5842f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
 <p>There is also special juxtaposition syntax for empty arrays:</p>
 <pre><code class="julia">Float32[]</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">Float32[]</code></pre></div><h4 id="functions_that_generate_arrays" ><a href="#functions_that_generate_arrays"> Functions that generate arrays:</a></h4><pre><code class="julia">zeros(Bool, 3)</code></pre>
@@ -579,14 +582,14 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{Complex{Int64}}:
  1+10im  1+10im
  1+10im  1+10im</code></pre></div><pre><code class="julia">rand(Int8)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">59</code></pre></div><pre><code class="julia">rand(5)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">72</code></pre></div><pre><code class="julia">rand(5)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Float64}:
- 0.47731990309988803
- 0.0758016452892517
- 0.4176505514774149
- 0.9202951660860367
- 0.5270016183935262</code></pre></div><pre><code class="julia">rand([:🐱, :🐶, :🐦, :🐴])</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">:🐱</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
+ 0.6112199084494764
+ 0.2928927487068307
+ 0.11567450550036706
+ 0.36317474803940897
+ 0.10589270093375036</code></pre></div><pre><code class="julia">rand([:🐱, :🐶, :🐦, :🐴])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">:🐶</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
 <h3 id="indexing" ><a href="#indexing"> Indexing</a></h3><pre><code class="julia">v = collect(1:2:9)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
  1
@@ -619,28 +622,30 @@ String(&quot;asdf&quot;)</code></pre>
  7
  8</code></pre></div><pre><code class="julia">bools = rand(Bool, length(v))</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Bool}:
+ 1
  0
  1
  0
- 0
  0</code></pre></div><pre><code class="julia">v[bools]</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">1-element Vector{Int64}:
- 3</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
+<div class="code-output"><pre><code class="code-result language-plaintext">2-element Vector{Int64}:
+ 1
+ 5</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
 <pre><code class="julia">v = rand(1:10, 8)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">8-element Vector{Int64}:
-  1
   3
   4
-  4
-  9
-  7
  10
- 10</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
-  9
-  7
+  3
+  8
+  6
+  6
+  6</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
  10
- 10</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
+  8
+  6
+  6
+  6</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
 <pre><code class="julia">M[2, 2] = 10</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><p>But wait!!! Why is the value of the expression the RHS?
 We can see that <code>M</code> has been modified:</p>
