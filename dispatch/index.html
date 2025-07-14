@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="/JuliaIntro/libs/katex/katex.min.css">
-     
+  
    <link rel="stylesheet" href="/JuliaIntro/libs/highlight/styles/github.min.css">
    
   <link rel="stylesheet" href="/JuliaIntro/css/franklin.css">
@@ -23,7 +22,7 @@
   }
 </style>
 
-   <title>First Steps</title>  
+   <title>Multiple Dispatch</title>  
 </head>
 <body>
 <div class="sidebar">
@@ -55,14 +54,18 @@
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#package_management" class="menu-list-link">Package Management</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#arrays!" class="menu-list-link">Arrays!</a>
         </ul>
       <a class="sidebar-nav-item " href="/JuliaIntro/types/">Types</a>
         <ul class="menu-list-child-list ">
-          <li class="menu-list-item"><a href="/JuliaIntro/types/#the_repl" class="menu-list-link">The REPL</a>
-          <li class="menu-list-item"><a href="/JuliaIntro/types/#package_management" class="menu-list-link">Package Management</a>
-          <li class="menu-list-item"><a href="/JuliaIntro/types/#basic_syntax" class="menu-list-link">Basic Syntax</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#the_type_tree" class="menu-list-link">Type Trees</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#structs" class="menu-list-link">Structs</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#mutable_structs" class="menu-list-link">Mutable Structs</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#parametric_types" class="menu-list-link">Parametric Types</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#tuples" class="menu-list-link">Tuples</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/types/#advanced_topics" class="menu-list-link">Advanced Topics</a>
         </ul>
-      <a class="sidebar-nav-item active" href="/JuliaIntro/types/">Multiple Dispatch</a>
+      <a class="sidebar-nav-item active" href="/JuliaIntro/dispatch/">Multiple Dispatch</a>
         <ul class="menu-list-child-list active">
           <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#the_repl" class="menu-list-link">The REPL</a>
           <li class="menu-list-item"><a href="/JuliaIntro/dispatch/#package_management" class="menu-list-link">Package Management</a>
@@ -89,280 +92,537 @@
 
 
 <div class="franklin-content" >
-  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#basic_syntax">Basic Syntax</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><h2 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h2><p>Julia has a fairly simple syntax which is:</p>
-<ol>
-<li>"Close to the math" so that code resembles the equivalent algorithm in plain math or pseudocode. Unicode symbols can help get even closer to math notation.</li>
-<li>Avoids too much unique syntax / keywords in favor of macros</li>
-<li>Familiar (enough) to users of MATLAB or Python</li>
-</ol>
-<div class="important"><p><strong>Important</strong> - <strong>Everything in Julia is an <em>expression</em>:</strong>
-(Almost) every piece of syntax in Julia is an <em><strong>expression</em></strong>. That means that is has an associated <em><strong>value</em></strong>. For instance the expression <code>2 + 2</code> has the value <code>4</code>.
-<br>
+  <h1 id="the_promised_land_multiple_dispatch" ><a href="#the_promised_land_multiple_dispatch"> The Promised Land: Multiple Dispatch</a></h1><div class="toc"><ol><li><a href="#rock_paper_scissors">Rock Paper Scissors</a></li><li><a href="#the_most_specific_signature??">The <em><strong>most specific signature</em></strong>??</a></li><li><a href="#ambiguity">Ambiguity 😱</a></li></ol></div><h2 id="rock_paper_scissors" ><a href="#rock_paper_scissors"> Rock Paper Scissors</a></h2><p>Let's play rock paper scissors:</p>
+<pre><code class="julia">abstract type Shape end
+struct Rock     &lt;: Shape end
+struct Paper    &lt;: Shape end
+struct Scissors &lt;: Shape end
 
-Keep this in mind as we go through the code.</p>
-</div><h2 id="loading_packages" ><a href="#loading_packages"> Loading packages</a></h2><p>Before we get into basic syntax we will need a few packages for this tutorial.
-While you can load packages at any top-level scope, it's best practice to do so at the beginning of your file, package, or notebook.</p>
-<pre><code class="julia">using LinearAlgebra, Random, CairoMakie # for plotting</code></pre>
-<h2 id="literals_and_variables" ><a href="#literals_and_variables"> Literals and Variables</a></h2><p>A literal is a representation of some data directly in code. For instance:</p>
-<pre><code class="julia">4</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">4</code></pre></div><p>is the literal for the 64-bit Integer number \(4\).
-<br>
+play(::Paper, ::Rock)     = &quot;Paper wins&quot;
+play(::Paper, ::Scissors) = &quot;Scissors wins&quot;
+play(::Rock,  ::Scissors) = &quot;Rock wins&quot;
+play(::T,     ::T) where &lbrace;T&lt;: Shape&rbrace; = &quot;Tie, try again&quot;
+play(a::Shape, b::Shape) = play(b, a) # Commutativity</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">play (generic function with 5 methods)</code></pre></div><pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> play(Paper(), Scissors())
+Scissors wins
 
-<strong>Note:</strong> Since this is an expression is has a value of 4.
-Notebooks and the REPL will automatically print out the value of an expression (or the last expression in a code block), <em>unless</em> the value of an expression is the special constant:</p>
-<pre><code class="julia">nothing</code></pre>
-<p>The other way to suppress the output of an expression is to use <code>;</code> character which can also be used to delimit multiple statements on a single line.</p>
-<pre><code class="julia">5; 6; 7;</code></pre>
-<p>Other literals include:</p>
-<pre><code class="julia">&quot;Howdy folks!&quot;; # string
-3.14159265     # floating point (Float64)
-true           # Boolean
-[1, 2, 3, 4]   # Vector of Int64</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
- 1
- 2
- 3
- 4</code></pre></div><pre><code class="julia">(1, 3.14159, &quot;Quantum? Never met 'em!&quot;) # A Tuple (an immutable fixed length collection)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">(1, 3.14159, "Quantum? Never met 'em!")</code></pre></div><p>A symbol is an identifier, a set of characters prefixed by a colon.
-Mostly used internally for Julia, they are essentially how you represent names (variables) as data.
-They are a little different than strings, but you won't see them often.</p>
-<pre><code class="julia">:iamasymbol
-:🐱</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">:🐱</code></pre></div><p>Now that we have literals we might like to give them a name.
-We can assign literals (and any other data) to a variable, which is simply a named value:</p>
-<pre><code class="julia">a = [1,2,3,4]
-w = 10
-y = true</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">true</code></pre></div><p>We can interpolate into strings by either <code>$y</code> or <code>$(w + 2)</code> for more complex expressions</p>
-<pre><code class="julia">x = &quot;Are are at UMass Amherst? $y&quot;</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">"Are are at UMass Amherst? true"</code></pre></div><p>Assignments are an expression whose value is the right-hand-side.
-This lets us, among other things, chain assignments:</p>
-<pre><code class="julia">i = j = 5; # both i and j are equal to 5
-@show i j</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 5
-j = 5
-</code></pre></div><p>Variables are not constrained to a particular type.</p>
-<pre><code class="julia">x = 13.5 # reassign x to a different type.</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">13.5</code></pre></div><p>Julia has support for Unicode variable names.
-In VSCode and the REPL we can use autocompletion such as <code>\Sigma</code>-TAB-<code>\hat</code>-TAB-<code>\^2</code>-TAB</p>
-<pre><code class="julia">Σ̂² = 1.0;</code></pre>
-<p>There is complete support for all of Unicode, so that means we have emoji as well!</p>
-<pre><code class="julia">😳 = 5 # `\:flushed`-TAB
-⚛️ = &quot;Quantum Numerics!&quot; # I don't think this has an autocomplete yet 🤔</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">"Quantum Numerics!"</code></pre></div><p>Julia allows for <em>numeric</em> literals to be <strong>immediately</strong> followed by a variable, which results in multiplication:</p>
-<pre><code class="julia">3x</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">40.5</code></pre></div><p>This helps us write long equations very nicely:</p>
-<pre><code class="julia">4(x + 3)^2 - 10</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">1079.0</code></pre></div><p>This functionality is also used for complex number literals, with the global constant <code>im</code>:</p>
-<pre><code class="julia">10 + 3im</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">10 + 3im</code></pre></div><h2 id="operators_and_functions" ><a href="#operators_and_functions"> Operators and Functions</a></h2><p>Like most languages Julia has two syntaxes for operating on values: operators and function calls.</p>
-<h3 id="operators" ><a href="#operators"> Operators</a></h3><pre><code class="julia">w + x + Σ̂²</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">24.5</code></pre></div><pre><code class="julia">2 ^ 5 # exponentiation</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">32</code></pre></div><p>There are also Unicode operators, for instance this is integer division:</p>
-<pre><code class="julia">5 ÷ 2 # (`5 \div`-TAB-`2`)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">2</code></pre></div><pre><code class="julia">∛8 # `\cbrt`-TAB-`8`</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">2.0</code></pre></div><p>The boolean operators are:</p>
-<pre><code class="julia">!y # negation
-false &amp;&amp; y # short circuiting and
-y || true # short circuiting or</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">true</code></pre></div><p>The <code>&lt;op&gt;=</code> operators update a variable, such as:</p>
-<pre><code class="julia">w += 3</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">13</code></pre></div><h3 id="functions" ><a href="#functions"> Functions</a></h3><p>Functions are called much as they are in other languages like Python:</p>
-<pre><code class="julia">sin(2x)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">0.956375928404503</code></pre></div><pre><code class="julia">length(a)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">4</code></pre></div><pre><code class="julia">complex(1.0, 10)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">1.0 + 10.0im</code></pre></div><p>There are three syntaxes for defining functions. The first two produce named functions, and we'll get to the third in a moment.
-The general form is:</p>
-<pre><code class="julia">function foo(x, y)
-    # we don't actually need the `return` here
-    # the last expression is returned by default
-    return x + y
-end</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">foo (generic function with 1 method)</code></pre></div><p>and the terse form which is typically used if your function is a single expression:</p>
-<pre><code class="julia">bar(x, y) = x + y</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">bar (generic function with 1 method)</code></pre></div><p>We can call this function as above:</p>
-<pre><code class="julia">@show foo(w, x) == bar(w, x)</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">foo(w, x) == bar(w, x) = true
-</code></pre></div><h4 id="keyword_and_optional_arguments" ><a href="#keyword_and_optional_arguments"> Keyword and optional arguments</a></h4><p>We can add "keyword" arguments to a function by placing them after a semicolon in the arguments:</p>
-<pre><code class="julia">function mykwargs(a; b)
-    a ^ b
-end;</code></pre>
-<p>Both positional arguments and keyword arguments can be made optional by providing a default value.
-Ignore the <code>@show</code> for now we'll get to that later, it prints out the expression and its result.</p>
-<pre><code class="julia">function myoptionalfunc(a = 2; b = 3)
-    a ^ b
-end
-@show myoptionalfunc()
-@show myoptionalfunc(b = 3)
-@show myoptionalfunc(5)
-@show myoptionalfunc(5, b = 2)</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">myoptionalfunc() = 8
-myoptionalfunc(b = 3) = 8
-myoptionalfunc(5) = 125
-myoptionalfunc(5, b = 2) = 25
-</code></pre></div><p>Operators are "just" functions with support for infix notation (except <code>&amp;&amp;</code> and <code>||</code> which uniquely short circuit)</p>
-<pre><code class="julia">+(1, 2, 3, 4)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><pre><code class="julia">f = *
-f(1, 2, 3)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">6</code></pre></div><h4 id="functions_are_data" ><a href="#functions_are_data"> Functions are data</a></h4><p>Just like strings or vectors and can be assigned to variables:</p>
-<pre><code class="julia">baz = foo
-baz(w, x)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">26.5</code></pre></div><p>They can also be passed to other functions:</p>
-<pre><code class="julia">map(sin, [1.0, 2.0, π])</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Float64}:
- 0.8414709848078965
- 0.9092974268256817
- 1.2246467991473532e-16</code></pre></div><h4 id="anonymous_functions" ><a href="#anonymous_functions"> Anonymous functions</a></h4><p>The third syntax for defining a function is for so-called anonymous functions (functions without a name)</p>
-<pre><code class="julia">x -&gt; 5x + (x - 1)^2</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">#3 (generic function with 1 method)</code></pre></div><p>Of course we didn't give it a name, so now we have no way to reference it!
-These are most often used to pass to "higher-order" functions (functions that accept other functions as arguments):</p>
-<pre><code class="julia">map(x -&gt; 5x + (x - 1)^2, a)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
-  5
- 11
- 19
- 29</code></pre></div><p>For anonymous functions with multiple arguments the syntax looks like this:</p>
-<pre><code class="julia">(x, y, z) -&gt; x/3 + y^3 + z^2</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">#7 (generic function with 1 method)</code></pre></div><p>or with zero arguments like this:</p>
-<pre><code class="julia">() -&gt; 2 + 2</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">#9 (generic function with 1 method)</code></pre></div><h3 id="broadcasting" ><a href="#broadcasting"> Broadcasting</a></h3><p>We often encounter situations where we want to call a function such as <code>sin</code>
-over all elements of a collection like a <code>Vector</code>.
-In order to make this ergonomic Julia supports a generalized "broadcasting" syntax:</p>
-<pre><code class="julia">sin.([1, 2, 3])</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Float64}:
- 0.8414709848078965
- 0.9092974268256817
- 0.1411200080598672</code></pre></div><p>Any function can be suffixed with a <code>.</code> in order to broadcast it elementwise over each value in a collection.
-This also works elementwise, for instance:</p>
-<pre><code class="julia">complex.([1, 2, 3], [10, 20, 30])</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Complex{Int64}}:
- 1 + 10im
- 2 + 20im
- 3 + 30im</code></pre></div><p>or with operators in infix form:</p>
-<pre><code class="julia">[1, 2, 3] .+ [4, 5, 6]</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
- 5
- 7
- 9</code></pre></div><h2 id="control_flow" ><a href="#control_flow"> Control Flow</a></h2><p>We now know how to define variables, call functions and operators, and define basic functions.
-For a bit of a break let's look at the following function which computes a single point in the mandelbrot set to get a sense for control flow:</p>
-<pre><code class="julia">function mandel(z)
-	c = z
-	maxiter = 80
-	for n in 1:maxiter
-	  if abs(z) &gt; 2
-		  return n-1
-	  end
-	  z = z^2 + c
-	end
-	return maxiter
-end;</code></pre>
-<p>We need a complex plane to compute the set on:</p>
-<pre><code class="julia">resolution = 0.02
-reals = -2:resolution:1 # range from -2 to 1 with step size of 0.02
-imgs = -1:resolution:1
-plane = [complex(re, img) for (re, img) in Iterators.product(reals, imgs)];
-results = mandel.(plane);</code></pre>
-<p>We're going to use a package called CairoMakie to plot the result:</p>
-<pre><code class="julia">CairoMakie.heatmap(results)</code></pre>
-<div class="code-output"><img class="code-figure" src="/JuliaIntro/assets/dispatch/index/figs-html/__autofig_2322465883030802333.svg">
-</div><p>Let's break down some of the expressions we saw above:</p>
-<h3 id="conditionals" ><a href="#conditionals"> Conditionals</a></h3><p>We have a conditional block above which tests whether <code>abs(z) &gt; 2</code>.
-A general control flow block looks something like:</p>
-<pre><code class="julia">x = 5; y = 10; z = true
-if x &lt; y
-    println(&quot;Small x!&quot;)
-elseif x == y
-    println(&quot;x and y are equal!&quot;)
-else
-    println(&quot;Big x!&quot;)
-end</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">Small x!
-</code></pre></div><p>Many languages have a ternary expression, for a short way to evaluate a two way conditional:</p>
-<pre><code class="julia">println(x &lt; y ? &quot;x is less than y!&quot; : &quot;x is greater than or equal to y!&quot;)</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">x is less than y!
-</code></pre></div><p>Julia users really like to keep code compact, so there is one additional conditional expression you might see:</p>
-<pre><code class="julia">x &lt; y &amp;&amp; println(&quot;x was less than y!&quot;)
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> play(Rock(), Paper())
+Paper wins
 
-x &lt; y || println(&quot;I don't get here if x &lt; y!&quot;)</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">x was less than y!
-</code></pre><pre><code class="code-result language-plaintext">true</code></pre></div><p>It's important to note that conditional expressions (like <code>if-elseif-else</code>) are <em>short-circuiting</em>.
-This means that in the expression:</p>
-<pre><code class="julia">a &amp;&amp; b</code></pre>
-<p><code>b</code> is only evaluated if <code>a</code> is <code>true</code>!
-Similarly in</p>
-<pre><code class="julia">a || b</code></pre>
-<p><code>b</code> will only be evaluated if <code>a = false</code></p>
-<h3 id="loops" ><a href="#loops"> Loops</a></h3><p>Our <code>mandelbrot</code> function also has a <code>for</code> loop iterating over the range <code>1:maxiter</code>.</p>
-<p>There are two loop constructs in Julia. <code>while</code> loops:</p>
-<pre><code class="julia">i = 1;
-while i &lt;= 5
-    println(&quot;i = $i&quot;)
-    i += 1
-end</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 1
-i = 2
-i = 3
-i = 4
-i = 5
-</code></pre></div><p>and <code>for</code> loops (note that <code>i</code> is local to the <code>for</code> loop block, unlike with the <code>while</code> above):</p>
-<pre><code class="julia">for i in 1:2:9
-    println(&quot;i = $i&quot;)
-end</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">i = 1
-i = 3
-i = 5
-i = 7
-i = 9
-</code></pre></div><p><code>for</code> loops can iterate over many different containers, including the <code>Vector</code>s, <code>Tuple</code>s,
-<code>StepRange</code>s like <code>1:2:9</code>, <code>UnitRange</code>s like <code>1:10</code> and more.</p>
-<p>Instead of the <code>in</code> keyword we can also use <code>=</code> and <code>∈</code> (<code>\in</code>-TAB).</p>
-<p>When we are looping over containers like <code>Vector</code>s it's important to be sure we know what we are looping over!
-We will get to indexing when we talk about arrays in the next section, but for now we can index a <code>Vector</code> as follows:</p>
-<pre><code class="julia">emojis = [&quot;🤔&quot;, &quot;⚛️&quot;, &quot;💻&quot;];
-@show emojis[1]
-@show emojis[3]</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">emojis[1] = &quot;🤔&quot;
-emojis[3] = &quot;💻&quot;
-</code></pre></div><p>Notice that Julia is (<strong>generally</strong>) 1-based, <strong>not</strong> 0 based!</p>
-<pre><code class="julia">println(&quot;Iterating over each value:&quot;)
-for i ∈ emojis
-    println(i)
-end
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> play(Scissors(), Scissors())
+Tie, try again
+</code></pre>
+<p>We've got a lot of new stuff going on here! First we have the <code>::Paper</code> statement. This syntax exists for when you don't care about the value of an argument, and only its type.</p>
+<p>Second we have the syntax:</p>
+<pre><code class="julia">play(::T,     ::T) where &lbrace;T&lt;: Shape&rbrace; = &quot;Tie, try again&quot;</code></pre>
+<p>Much like parametric structs this is a parametric method with a slot named <code>T</code> which must be a subtype of <code>Shape</code>. <em><strong>Notice that both arguments have the same type <code>T</code></em></strong></p>
+<p>Next we have our first real look at the difference between a <code>Function</code> and a <code>Method</code>, and how to perform specialization:</p>
+<h3 id="functions_and_methods" ><a href="#functions_and_methods"> Functions and Methods</a></h3><pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> play
+Main.__FRANKLIN_1181134.play
 
-println(&quot;Iterating over the indices:&quot;)
-for i ∈ 1:length(emojis)
-    println(i)
-end
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> methods(play)
+# 5 methods for generic function &quot;play&quot; from Main.__FRANKLIN_1181134:
+ [1] play(::Main.__FRANKLIN_1181134.Rock, ::Main.__FRANKLIN_1181134.Scissors)
+     @ string:8
+ [2] play(::Main.__FRANKLIN_1181134.Paper, ::Main.__FRANKLIN_1181134.Scissors)
+     @ string:7
+ [3] play(::Main.__FRANKLIN_1181134.Paper, ::Main.__FRANKLIN_1181134.Rock)
+     @ string:6
+ [4] play(::T, ::T) where T&lt;:Main.__FRANKLIN_1181134.Shape
+     @ string:9
+ [5] play(a::Main.__FRANKLIN_1181134.Shape, b::Main.__FRANKLIN_1181134.Shape)
+     @ string:10
+</code></pre>
+<p>So what's going on here?</p>
+<p>A function is really just a name for a table of 1 or more <em>methods</em>. When you call a function in Julia the arguments you provided have concrete types, for instance when I call:</p>
+<pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> play(Paper(), Rock())
+Paper wins
+</code></pre>
+<p>Julia will go searching for a function named <code>play</code> with <em><strong>most specific signature</em></strong> that matches my arguments. Instead of <code>(Paper(), Rock())</code> as the input to <code>methods</code> we pass the type of the argument tuple:</p>
+<pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> dump(methods(play, Tuple{Paper, Rock}))
+Base.MethodList
+  ms: Array{Method}((1,))
+    1: Method
+      name: Symbol play
+      module: Module Main.__FRANKLIN_1181134
+      file: Symbol string
+      line: Int32 6
+      primary_world: UInt64 0x00000000000068df
+      deleted_world: UInt64 0xffffffffffffffff
+      sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Rock} &lt;: Any
+      specializations: Core.MethodInstance
+        def: Method#= circular reference @-2 =#
+        specTypes: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Rock} &lt;: Any
+        sparam_vals: empty SimpleVector
+        uninferred: #undef
+        backedges: Array{Any}((1,))
+          1: Core.MethodInstance
+            def: Method
+              name: Symbol play
+              module: Module Main.__FRANKLIN_1181134
+              file: Symbol string
+              line: Int32 10
+              primary_world: UInt64 0x00000000000068e3
+              deleted_world: UInt64 0xffffffffffffffff
+              sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Shape, Main.__FRANKLIN_1181134.Shape} &lt;: Any
+              specializations: Core.MethodInstance#= circular reference @-2 =#
+              speckeyset: Memory{Any}
+                length: Int64 0
+                ptr: Ptr{Nothing} @0x00007fb3a510aea0
+              slot_syms: String &quot;#self#\0a\0b\0&quot;
+              external_mt: #undef
+              source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\b\b\x16\xbe\xe2.\x1e\x11\0\x05\x03\0\x05\x02\x007\x03\x01\xbe\x16\xbe\xee\0\0\0\0\0\0\0\0A\x16\xbd\xe2/#\x11\0\x81\xb1\xa7A\x01\0\0&quot;
+              unspecialized: #undef
+              generator: #undef
+              roots: Array{Any}((2,))
+                1: Symbol play
+                2: String &quot;Paper wins&quot;
+              root_blocks: #undef
+              nroots_sysimg: Int32 0
+              ccallable: #undef
+              invokes: Nothing nothing
+              recursion_relation: #undef
+              nargs: Int32 3
+              called: Int32 0
+              nospecialize: Int32 0
+              nkw: Int32 0
+              isva: Bool false
+              is_for_opaque_closure: Bool false
+              nospecializeinfer: Bool false
+              constprop: UInt8 0x00
+              max_varargs: UInt8 0xff
+              purity: UInt16 0x0000
+            specTypes: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Rock, Main.__FRANKLIN_1181134.Paper} &lt;: Any
+            sparam_vals: empty SimpleVector
+            uninferred: #undef
+            backedges: #undef
+            cache: Core.CodeInstance
+              def: Core.MethodInstance#= circular reference @-2 =#
+              owner: Nothing nothing
+              next: #undef
+              min_world: UInt64 0x00000000000068e3
+              max_world: UInt64 0xffffffffffffffff
+              rettype: String &lt;: AbstractString
+              exctype: Union{}
+              rettype_const: String &quot;Paper wins&quot;
+              inferred: String &quot;\x01\0\0\n\0\x03\0\0\0\0\b\b\x16\xbd\xe27\x11\x01\x16\xbd\xe2B\x16\xbd\xee\xa0\x02\0\0A\x16\xbe&#39;\0//#\x11\0\x81\xb1\xa7/#\x11\0\x81\xad\xa8A\0\0&quot;
+              ipo_purity_bits: UInt32 0x000040e0
+              purity_bits: UInt32 0x000040e0
+              analysis_results: Core.Compiler.AnalysisResults
+                result: Nothing nothing
+                next: #undef
+              specsigflags: Bool true
+              precompile: Bool true
+              relocatability: UInt8 0x00
+              invoke: Ptr{Nothing} @0x00007fb399d84a90
+              specptr: Ptr{Nothing} @0x00007fb399d84a70
+            inInference: Bool false
+            cache_with_orig: Bool false
+            precompiled: Bool false
+        cache: Core.CodeInstance
+          def: Core.MethodInstance#= circular reference @-2 =#
+          owner: Nothing nothing
+          next: #undef
+          min_world: UInt64 0x0000000000000001
+          max_world: UInt64 0xffffffffffffffff
+          rettype: String &lt;: AbstractString
+          exctype: Union{}
+          rettype_const: String &quot;Paper wins&quot;
+          inferred: String &quot;\x01\0\0\n\0\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\x16\xbd\xe2B\x16\xbd\xee\xa0\x02\0\0A\x16\xbd&#39;\0//#\x11\x01\x81\xad\xa7A\0\0&quot;
+          ipo_purity_bits: UInt32 0x000040e0
+          purity_bits: UInt32 0x000040e0
+          analysis_results: Core.Compiler.AnalysisResults
+            result: Nothing nothing
+            next: #undef
+          specsigflags: Bool true
+          precompile: Bool true
+          relocatability: UInt8 0x00
+          invoke: Ptr{Nothing} @0x00007fb399d8e8a0
+          specptr: Ptr{Nothing} @0x00007fb399d8e880
+        inInference: Bool false
+        cache_with_orig: Bool false
+        precompiled: Bool false
+      speckeyset: Memory{Any}
+        length: Int64 0
+        ptr: Ptr{Nothing} @0x00007fb3a510aea0
+      slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
+      external_mt: #undef
+      source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xad\xa7A\0\0&quot;
+      unspecialized: #undef
+      generator: #undef
+      roots: Array{Any}((2,))
+        1: String &quot;Paper wins&quot;
+        2: Symbol play
+      root_blocks: #undef
+      nroots_sysimg: Int32 0
+      ccallable: #undef
+      invokes: Nothing nothing
+      recursion_relation: #undef
+      nargs: Int32 3
+      called: Int32 0
+      nospecialize: Int32 0
+      nkw: Int32 0
+      isva: Bool false
+      is_for_opaque_closure: Bool false
+      nospecializeinfer: Bool false
+      constprop: UInt8 0x00
+      max_varargs: UInt8 0xff
+      purity: UInt16 0x0000
+  mt: Core.MethodTable
+    name: Symbol play
+    defs: Core.TypeMapEntry
+      next: Core.TypeMapEntry
+        next: Core.TypeMapEntry
+          next: Core.TypeMapEntry
+            next: Core.TypeMapEntry
+              next: Nothing nothing
+              sig: UnionAll
+                var: TypeVar
+                body: Tuple{typeof(Main.__FRANKLIN_1181134.play), T&lt;:Main.__FRANKLIN_1181134.Shape, T&lt;:Main.__FRANKLIN_1181134.Shape} &lt;: Any
+              simplesig: Nothing nothing
+              guardsigs: empty SimpleVector
+              min_world: UInt64 0x00000000000068e2
+              max_world: UInt64 0xffffffffffffffff
+              func: Method
+                name: Symbol play
+                module: Module Main.__FRANKLIN_1181134
+                file: Symbol string
+                line: Int32 9
+                primary_world: UInt64 0x00000000000068e2
+                deleted_world: UInt64 0xffffffffffffffff
+                sig: UnionAll
+                specializations: Core.MethodInstance
+                speckeyset: Memory{Any}
+                slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
+                external_mt: #undef
+                source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xb0\xa7A\0\0&quot;
+                unspecialized: #undef
+                generator: #undef
+                roots: Array{Any}((2,))
+                root_blocks: #undef
+                nroots_sysimg: Int32 0
+                ccallable: #undef
+                invokes: Nothing nothing
+                recursion_relation: #undef
+                nargs: Int32 3
+                called: Int32 0
+                nospecialize: Int32 0
+                nkw: Int32 0
+                isva: Bool false
+                is_for_opaque_closure: Bool false
+                nospecializeinfer: Bool false
+                constprop: UInt8 0x00
+                max_varargs: UInt8 0xff
+                purity: UInt16 0x0000
+              isleafsig: Bool false
+              issimplesig: Bool false
+              va: Bool false
+            sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Shape, Main.__FRANKLIN_1181134.Shape} &lt;: Any
+            simplesig: Nothing nothing
+            guardsigs: empty SimpleVector
+            min_world: UInt64 0x00000000000068e3
+            max_world: UInt64 0xffffffffffffffff
+            func: Method
+              name: Symbol play
+              module: Module Main.__FRANKLIN_1181134
+              file: Symbol string
+              line: Int32 10
+              primary_world: UInt64 0x00000000000068e3
+              deleted_world: UInt64 0xffffffffffffffff
+              sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Shape, Main.__FRANKLIN_1181134.Shape} &lt;: Any
+              specializations: Core.MethodInstance
+                def: Method
+                specTypes: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Rock, Main.__FRANKLIN_1181134.Paper} &lt;: Any
+                sparam_vals: empty SimpleVector
+                uninferred: #undef
+                backedges: #undef
+                cache: Core.CodeInstance
+                inInference: Bool false
+                cache_with_orig: Bool false
+                precompiled: Bool false
+              speckeyset: Memory{Any}
+                length: Int64 0
+                ptr: Ptr{Nothing} @0x00007fb3a510aea0
+              slot_syms: String &quot;#self#\0a\0b\0&quot;
+              external_mt: #undef
+              source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\b\b\x16\xbe\xe2.\x1e\x11\0\x05\x03\0\x05\x02\x007\x03\x01\xbe\x16\xbe\xee\0\0\0\0\0\0\0\0A\x16\xbd\xe2/#\x11\0\x81\xb1\xa7A\x01\0\0&quot;
+              unspecialized: #undef
+              generator: #undef
+              roots: Array{Any}((2,))
+                1: Symbol play
+                2: String &quot;Paper wins&quot;
+              root_blocks: #undef
+              nroots_sysimg: Int32 0
+              ccallable: #undef
+              invokes: Nothing nothing
+              recursion_relation: #undef
+              nargs: Int32 3
+              called: Int32 0
+              nospecialize: Int32 0
+              nkw: Int32 0
+              isva: Bool false
+              is_for_opaque_closure: Bool false
+              nospecializeinfer: Bool false
+              constprop: UInt8 0x00
+              max_varargs: UInt8 0xff
+              purity: UInt16 0x0000
+            isleafsig: Bool false
+            issimplesig: Bool false
+            va: Bool false
+          sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Rock} &lt;: Any
+          simplesig: Nothing nothing
+          guardsigs: empty SimpleVector
+          min_world: UInt64 0x00000000000068df
+          max_world: UInt64 0xffffffffffffffff
+          func: Method
+            name: Symbol play
+            module: Module Main.__FRANKLIN_1181134
+            file: Symbol string
+            line: Int32 6
+            primary_world: UInt64 0x00000000000068df
+            deleted_world: UInt64 0xffffffffffffffff
+            sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Rock} &lt;: Any
+            specializations: Core.MethodInstance
+              def: Method#= circular reference @-2 =#
+              specTypes: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Rock} &lt;: Any
+              sparam_vals: empty SimpleVector
+              uninferred: #undef
+              backedges: Array{Any}((1,))
+                1: Core.MethodInstance
+              cache: Core.CodeInstance
+                def: Core.MethodInstance
+                owner: Nothing nothing
+                next: #undef
+                min_world: UInt64 0x0000000000000001
+                max_world: UInt64 0xffffffffffffffff
+                rettype: String &lt;: AbstractString
+                exctype: Union{}
+                rettype_const: String &quot;Paper wins&quot;
+                inferred: String &quot;\x01\0\0\n\0\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\x16\xbd\xe2B\x16\xbd\xee\xa0\x02\0\0A\x16\xbd&#39;\0//#\x11\x01\x81\xad\xa7A\0\0&quot;
+                ipo_purity_bits: UInt32 0x000040e0
+                purity_bits: UInt32 0x000040e0
+                analysis_results: Core.Compiler.AnalysisResults
+                specsigflags: Bool true
+                precompile: Bool true
+                relocatability: UInt8 0x00
+                invoke: Ptr{Nothing} @0x00007fb399d8e8a0
+                specptr: Ptr{Nothing} @0x00007fb399d8e880
+              inInference: Bool false
+              cache_with_orig: Bool false
+              precompiled: Bool false
+            speckeyset: Memory{Any}
+              length: Int64 0
+              ptr: Ptr{Nothing} @0x00007fb3a510aea0
+            slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
+            external_mt: #undef
+            source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xad\xa7A\0\0&quot;
+            unspecialized: #undef
+            generator: #undef
+            roots: Array{Any}((2,))
+              1: String &quot;Paper wins&quot;
+              2: Symbol play
+            root_blocks: #undef
+            nroots_sysimg: Int32 0
+            ccallable: #undef
+            invokes: Nothing nothing
+            recursion_relation: #undef
+            nargs: Int32 3
+            called: Int32 0
+            nospecialize: Int32 0
+            nkw: Int32 0
+            isva: Bool false
+            is_for_opaque_closure: Bool false
+            nospecializeinfer: Bool false
+            constprop: UInt8 0x00
+            max_varargs: UInt8 0xff
+            purity: UInt16 0x0000
+          isleafsig: Bool true
+          issimplesig: Bool true
+          va: Bool false
+        sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Scissors} &lt;: Any
+        simplesig: Nothing nothing
+        guardsigs: empty SimpleVector
+        min_world: UInt64 0x00000000000068e0
+        max_world: UInt64 0xffffffffffffffff
+        func: Method
+          name: Symbol play
+          module: Module Main.__FRANKLIN_1181134
+          file: Symbol string
+          line: Int32 7
+          primary_world: UInt64 0x00000000000068e0
+          deleted_world: UInt64 0xffffffffffffffff
+          sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Scissors} &lt;: Any
+          specializations: Core.MethodInstance
+            def: Method#= circular reference @-2 =#
+            specTypes: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Paper, Main.__FRANKLIN_1181134.Scissors} &lt;: Any
+            sparam_vals: empty SimpleVector
+            uninferred: #undef
+            backedges: #undef
+            cache: Core.CodeInstance
+              def: Core.MethodInstance#= circular reference @-2 =#
+              owner: Nothing nothing
+              next: #undef
+              min_world: UInt64 0x0000000000000001
+              max_world: UInt64 0xffffffffffffffff
+              rettype: String &lt;: AbstractString
+              exctype: Union{}
+              rettype_const: String &quot;Scissors wins&quot;
+              inferred: String &quot;\x01\0\0\n\0\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\x16\xbd\xe2B\x16\xbd\xee\xa0\x02\0\0A\x16\xbd&#39;\0//#\x11\x01\x81\xae\xa7A\0\0&quot;
+              ipo_purity_bits: UInt32 0x000040e0
+              purity_bits: UInt32 0x000040e0
+              analysis_results: Core.Compiler.AnalysisResults
+                result: Nothing nothing
+                next: #undef
+              specsigflags: Bool true
+              precompile: Bool true
+              relocatability: UInt8 0x00
+              invoke: Ptr{Nothing} @0x00007fb399d82e20
+              specptr: Ptr{Nothing} @0x00007fb399d82e00
+            inInference: Bool false
+            cache_with_orig: Bool false
+            precompiled: Bool false
+          speckeyset: Memory{Any}
+            length: Int64 0
+            ptr: Ptr{Nothing} @0x00007fb3a510aea0
+          slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
+          external_mt: #undef
+          source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xae\xa7A\0\0&quot;
+          unspecialized: #undef
+          generator: #undef
+          roots: Array{Any}((2,))
+            1: String &quot;Scissors wins&quot;
+            2: Symbol play
+          root_blocks: #undef
+          nroots_sysimg: Int32 0
+          ccallable: #undef
+          invokes: Nothing nothing
+          recursion_relation: #undef
+          nargs: Int32 3
+          called: Int32 0
+          nospecialize: Int32 0
+          nkw: Int32 0
+          isva: Bool false
+          is_for_opaque_closure: Bool false
+          nospecializeinfer: Bool false
+          constprop: UInt8 0x00
+          max_varargs: UInt8 0xff
+          purity: UInt16 0x0000
+        isleafsig: Bool true
+        issimplesig: Bool true
+        va: Bool false
+      sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Rock, Main.__FRANKLIN_1181134.Scissors} &lt;: Any
+      simplesig: Nothing nothing
+      guardsigs: empty SimpleVector
+      min_world: UInt64 0x00000000000068e1
+      max_world: UInt64 0xffffffffffffffff
+      func: Method
+        name: Symbol play
+        module: Module Main.__FRANKLIN_1181134
+        file: Symbol string
+        line: Int32 8
+        primary_world: UInt64 0x00000000000068e1
+        deleted_world: UInt64 0xffffffffffffffff
+        sig: Tuple{typeof(Main.__FRANKLIN_1181134.play), Main.__FRANKLIN_1181134.Rock, Main.__FRANKLIN_1181134.Scissors} &lt;: Any
+        specializations: empty SimpleVector
+        speckeyset: Memory{Any}
+          length: Int64 0
+          ptr: Ptr{Nothing} @0x00007fb3a510aea0
+        slot_syms: String &quot;#self#\0#unused#\0#unused#\0&quot;
+        external_mt: #undef
+        source: String &quot;\0\0\0\xff\xff\x03\0\0\0\0\0\0\x16\xbd\xe27\x11\0\xbd\x16\xbd\xee\0\0\0\0A\x16\xbd\xe2/#\x11\x01\x81\xaf\xa7A\0\0&quot;
+        unspecialized: #undef
+        generator: #undef
+        roots: Array{Any}((2,))
+          1: String &quot;Rock wins&quot;
+          2: Symbol play
+        root_blocks: #undef
+        nroots_sysimg: Int32 0
+        ccallable: #undef
+        invokes: Nothing nothing
+        recursion_relation: #undef
+        nargs: Int32 3
+        called: Int32 0
+        nospecialize: Int32 0
+        nkw: Int32 0
+        isva: Bool false
+        is_for_opaque_closure: Bool false
+        nospecializeinfer: Bool false
+        constprop: UInt8 0x00
+        max_varargs: UInt8 0xff
+        purity: UInt16 0x0000
+      isleafsig: Bool true
+      issimplesig: Bool true
+      va: Bool false
+    leafcache: Memory{Any}
+      length: Int64 32
+      ptr: Ptr{Nothing} @0x00007fb38a681c40
+    cache: Nothing nothing
+    max_args: Int64 3
+    module: Module Main.__FRANKLIN_1181134
+    backedges: #undef
+    : Int64 0
+    : Int64 20753281974272
+    offs: UInt8 0x01
+    : UInt8 0x00
+</code></pre>
+<p>🤯
+<div class="important"><p><strong>Important</strong> - <strong>Until you are spelunking through the Julia compiler you never need to look at this</strong>
+But it's still neat to peek behind the curtain</p>
+</div>.</p>
+<h2 id="the_most_specific_signature??" ><a href="#the_most_specific_signature??"> The <em><strong>most specific signature</em></strong>??</a></h2><p>What does that even mean? We're going to borrow very liberally from the wonderful <a href="https://scientificcoder.com/the-art-of-multiple-dispatch">Matthijs Cox</a> who also gave us our opening little comic.</p>
+<p>Let's let's take a function <code>f</code> and a really restricted set of types: <code>Float64, Int, String</code> and visualize what dispatch really looks like</p>
+<figure style="text-align:center;">
+<img src="/JuliaIntro/assets/images/dispatch1.png" style="padding:0;width:100%" alt="The Cube"/>
+<figcaption>The Cube</figcaption>
+</figure><p>When <code>f</code> takes no arguments, the method we select is clear. But you'll notice that each argument we add squares the number of possible methods we could write.</p>
+<figure style="text-align:center;">
+<img src="/JuliaIntro/assets/images/dispatch2.png" style="padding:0;width:100%" alt="Signature Coverage"/>
+<figcaption>Signature Coverage</figcaption>
+</figure><div class="important"><p><strong>Important</strong> - <strong>Abstract types, Unions, and parametric methods</strong>
+exist solely to help cover different parts of these spaces (which are often much much larger). Otherwise the parent type has nothing to do with the child type.</p>
+</div><pre><code class="julia">f(::Any, ::Any) = println(&quot;Any &amp; Any&quot;)
+f(::Int64, ::Int64) = println(&quot;Int &amp; Int&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">f (generic function with 2 methods)</code></pre></div><pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> f(:🐷, &quot;Oink oink!&quot;)
+Any &amp; Any
 
-println(&quot;Iterating over the indices but printing value:&quot;)
-for i ∈ eachindex(emojis)
-    println(emojis[i])
-end</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">Iterating over each value:
-🤔
-⚛️
-💻
-Iterating over the indices:
-1
-2
-3
-Iterating over the indices but printing value:
-🤔
-⚛️
-💻
-</code></pre></div><p>Notice that we switched to using <code>eachindex</code> instead of <code>length</code>. Can you guess why?</p>
-<h4 id="break_and_continue" ><a href="#break_and_continue"> <code>break</code> and <code>continue</code></a></h4><p>If you need to stop a loop early the <code>break</code> keyword will immediately terminate a loop.
-If you need to skip an iteration the <code>continue</code> keyword will immediately start the next iteration of the loop.</p>
-<pre><code class="julia">for i ∈ emojis
-    i == &quot;⚛️&quot; &amp;&amp; continue
-    println(i)
-end</code></pre>
-<div class="code-output"><pre><code class="code-stdout language-plaintext">🤔
-💻
-</code></pre></div><p>That covers most of the basic syntax we will need to get started. </p>
-<h2 id="tips_tricks_and_conventions" ><a href="#tips_tricks_and_conventions"> Tips Tricks and Conventions</a></h2><h3 id="can't_figure_out_how_to_type_a_unicode_character?" ><a href="#can't_figure_out_how_to_type_a_unicode_character?"> Can't figure out how to type a Unicode character?</a></h3><p>We will be using lots of Unicode characters throughout the week. If you can't figure out how to type a character, but you're able to copy and paste it into the REPL you can use the <code>help</code> REPL we discussed earlier:</p>
-<pre><code class="julia">help?&gt; 🤔</code></pre>
-<h3 id="13633231208144796923" ><a href="#13633231208144796923"> </a></h3>
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> f(1, 2)
+Int &amp; Int
+</code></pre>
+<figure style="text-align:center;">
+<img src="/JuliaIntro/assets/images/dispatch5.png" style="padding:0;width:100%" alt="Signature Overlap"/>
+<figcaption>Signature Overlap</figcaption>
+</figure><p>We have overlapping dispatches now, but the most specific one wins</p>
+<h2 id="ambiguity" ><a href="#ambiguity"> Ambiguity 😱</a></h2><pre><code class="julia">f(::Any, ::String) = println(&quot;Any &amp; String&quot;)
+f(::String, ::Any) = println(&quot;String &amp; Any&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">f (generic function with 4 methods)</code></pre></div><pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> f(&quot;This is fine&quot;, 5)
+String &amp; Any
+
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> f(5, &quot;So is this!&quot;)
+Any &amp; String
+
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> f(&quot;Now&quot;, &quot;What?!&quot;)
+ERROR: MethodError: f(::String, ::String) is ambiguous.
+
+Candidates:
+  f(::String, ::Any)
+    @ [Franklin]:2
+  f(::Any, ::String)
+    @ [Franklin]:1
+
+Possible fix, define
+  f(::String, ::String)
+
+Stacktrace:
+</code></pre>
+<figure style="text-align:center;">
+<img src="/JuliaIntro/assets/images/dispatch6.png" style="padding:0;width:100%" alt="Ambiguity!"/>
+<figcaption>Ambiguity!</figcaption>
+</figure><p>We have to fix our ambiguity with:</p>
+<pre><code class="julia">f(::String, ::String) = println(&quot;Phew, crisis averted&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">f (generic function with 5 methods)</code></pre></div><figure style="text-align:center;">
+<img src="/JuliaIntro/assets/images/dispatch7.png" style="padding:0;width:100%" alt="Dispatches all put together"/>
+<figcaption>Dispatches all put together</figcaption>
+</figure>
   <div class="page-foot">
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
     Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
@@ -371,11 +631,6 @@ end</code></pre>
 </div>
 
     </div>  
-    
-        <script src="/JuliaIntro/libs/katex/katex.min.js"></script>
-<script src="/JuliaIntro/libs/katex/contrib/auto-render.min.js"></script>
-<script>renderMathInElement(document.body)</script>
-
     
     
         <script src="/JuliaIntro/libs/highlight/highlight.min.js"></script>

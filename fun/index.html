@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="/JuliaIntro/libs/katex/katex.min.css">
-     
   
+   <link rel="stylesheet" href="/JuliaIntro/libs/highlight/styles/github.min.css">
+   
   <link rel="stylesheet" href="/JuliaIntro/css/franklin.css">
 <link rel="stylesheet" href="/JuliaIntro/css/poole_hyde.css">
 <link rel="stylesheet" href="/JuliaIntro/css/custom.css">
@@ -22,7 +22,7 @@
   }
 </style>
 
-   <title>Home</title>  
+   <title>Fun Examples</title>  
 </head>
 <body>
 <div class="sidebar">
@@ -35,8 +35,8 @@
     </div>
     <nav class="sidebar-nav">
       
-      <a class="sidebar-nav-item active" href="/JuliaIntro/">Home</a>			  
-      <ul class="menu-list-child-list active">
+      <a class="sidebar-nav-item " href="/JuliaIntro/">Home</a>			  
+      <ul class="menu-list-child-list ">
         <li class="menu-list-item"><a href="/JuliaIntro/#goals" class="menu-list-link">Goals</a>
         <li class="menu-list-item"><a href="/JuliaIntro/#contents" class="menu-list-link">Contents</a>
         <li class="menu-list-item"><a href="/JuliaIntro/#before_you_start" class="menu-list-link">Before you start</a>
@@ -92,86 +92,8 @@
 
 
 <div class="franklin-content" >
-  <h1 id="julia_intro_for_qnumerics_summer_school" ><a href="#julia_intro_for_qnumerics_summer_school"> Julia Intro for QNumerics Summer School</a></h1><div class="toc"><ol><li><a href="#what_is_julia?">What is Julia?</a></li><li><a href="#why_julia?">Why Julia?</a></li><li><a href="#julia_vs._other_languages">Julia vs. Other Languages</a></li><li><a href="#other_resources">Other Resources</a></li></ol></div><h2 id="what_is_julia?" ><a href="#what_is_julia?"> What is Julia?</a></h2><p>Julia is a high-level, general-purpose programming language that is well suited for numerics, computational science, and scientific computing.</p>
-<figure style="text-align:center;">
-<img src="/JuliaIntro/assets/images/homepage.png" style="padding:0;width:100%" alt="Julia Homepage"/>
-<figcaption>Julia Homepage</figcaption>
-</figure><h2 id="why_julia?" ><a href="#why_julia?"> Why Julia?</a></h2><h3 id="solve_the_2_language_problem" ><a href="#solve_the_2_language_problem"> Solve the 2-language Problem</a></h3><figure style="text-align:center;">
-<img src="/JuliaIntro/assets/images/comic.png" style="padding:0;width:100%" alt="Who is Julia for?"/>
-<figcaption>Who is Julia for?</figcaption>
-</figure><p>The scientific, artificial intelligence, and research computing world has a two language problem</p>
-<ol>
-<li>Most scientists use "simpler" but <em><strong>slow</em></strong> languages like Python or Matlab</li>
-<li>As problems get bigger, we must turn to systems languages like C, C++, or Rust</li>
-</ol>
-<p>The end result?</p>
-<ul>
-<li>Researchers face a productivity cliff and must spend valuable time translating and performance engineering</li>
-<li>The average user can't meaningfully interact with their tools, adapt them to their needs:<ul>
-<li>Try changing Tensorflow or MATLAB internals!</li>
-</ul>
-</li>
-<li>Lost performance at the interface of libraries like PyTorch and the C++ backends</li>
-</ul>
-<h3 id="solve_the_expression_problem" ><a href="#solve_the_expression_problem"> Solve the Expression Problem</a></h3><blockquote><p>"To which degree can your application be structured in such a way that both:
+  <pre><code class="julia">println.(1:10 .|&gt;_-&gt;prod(j-&gt;rand([&quot;╱╲&quot;...]),1:10));</code></pre>
 
-<br>
-
-
-<br>
-
-(1) &nbsp;&nbsp;&nbsp;&nbsp;the <em><strong>data model</em></strong>  
-
-<br>
-
-(2) &nbsp;&nbsp;&nbsp;&nbsp;and the set of <em><strong>virtual operations</em></strong> over it  
-
-<br>
-
-
-<br>
-
-can be extended without the need to modify existing code, without the need for code repetition and without runtime type errors." 
-<br>
--- Mads Torgersen, "The Expression Problem Revisited"</p>
-</blockquote><p>The expression effectively states the difficulty of allowing:</p>
-<ol>
-<li>New types to be added to existing operations</li>
-<li>and new operations added to existing types</li>
-</ol>
-<p>without changing code.</p>
-<table class="">
-<thead>
-<th >                                                         </th>
-<th style="text-align:center;">  Functional Languages (Ocaml, Haskell, F#)  </th>
-<th style="text-align:center;"> Class-based Object Oriented Languages (C++, Java) </th>
-</thead>
-<tbody>
-<tr>
-<td > <strong>New types</strong> and <em>existing operations</em> </td>
-<td style="text-align:center;">  <span style="color:red"><b>HARD</b></span>  </td>
-<td style="text-align:center;">    <span style="color:green"><b>EASY</b></span>   </td>
-</tr>
-<tr>
-<td > <strong>New operations</strong> to <em>existing types</em>           </td>
-<td style="text-align:center;"> <span style="color:green"><b>EASY</b></span> </td>
-<td style="text-align:center;">     <span style="color:red"><b>HARD</b></span>     </td>
-</tr>
-</tbody>
-</table>
-<h4 id="julia_solves_this_problem_with_multiple_dispatch" ><a href="#julia_solves_this_problem_with_multiple_dispatch"> Julia solves this problem with <strong>multiple dispatch</strong></a></h4><p>More on this later, but multiple dispatch allows anyone to add new functions to existing types and new types to existing functions <em>with no interaction</em>!</p>
-<h3 id="complexity_\(\ne\)_speed" ><a href="#complexity_\(\ne\)_speed"> Complexity \(\ne\) Speed:</a></h3><figure style="text-align:center;">
-<img src="/JuliaIntro/assets/images/clbg.png" style="padding:0;width:100%" alt="Computer Language Benchmark Game"/>
-<figcaption>Computer Language Benchmark Game</figcaption>
-</figure><h3 id="package_management" ><a href="#package_management"> Package Management</a></h3><p>Package management in many languages like Python or even worse C / C++ hampers collaboration, productivity, and itself contributes to the expression problem!</p>
-<p>Modern package managers like those in Julia (Pkg.jl) and Rust (Cargo) give:</p>
-<ol>
-<li>Ease of access without struggle</li>
-<li>Clear versioning</li>
-<li>Trivial collaboration</li>
-<li>And most importantly <em><strong>reproducibility</em></strong></li>
-</ol>
-<h3 id="code_can_look_more_like_the_math" ><a href="#code_can_look_more_like_the_math"> Code can look more like the math</a></h3><h2 id="julia_vs._other_languages" ><a href="#julia_vs._other_languages"> Julia vs. Other Languages</a></h2><h3 id="python" ><a href="#python"> Python</a></h3><h3 id="c++" ><a href="#c++"> C++</a></h3><h2 id="other_resources" ><a href="#other_resources"> Other Resources</a></h2>
   <div class="page-foot">
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
     Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
@@ -181,11 +103,10 @@ can be extended without the need to modify existing code, without the need for c
 
     </div>  
     
-        <script src="/JuliaIntro/libs/katex/katex.min.js"></script>
-<script src="/JuliaIntro/libs/katex/contrib/auto-render.min.js"></script>
-<script>renderMathInElement(document.body)</script>
-
     
+        <script src="/JuliaIntro/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
+
     
   </body>
 </html>
