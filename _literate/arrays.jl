@@ -73,7 +73,7 @@ rand(Int8)
 #-
 rand(5)
 #-
-rand([:🐱, 🐶, 🐦, 🐴])
+rand([:🐱, :🐶, :🐦, :🐴])
 
 # You can see above how we have used the `rand` function for 3 completely different tasks above. We will talk more about this with `methods` later.
 

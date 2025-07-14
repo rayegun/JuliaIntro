@@ -1,7 +1,0 @@
-[deps]
-AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
-BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
-CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
-HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
-Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"

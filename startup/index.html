@@ -52,6 +52,7 @@
       <a class="sidebar-nav-item " href="/JuliaIntro/juliabasics/">First Steps</a>
         <ul class="menu-list-child-list ">
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#environments" class="menu-list-link">Environments</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#package_management" class="menu-list-link">Package Management</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#arrays!" class="menu-list-link">Arrays!</a>
@@ -92,11 +93,42 @@
 
 
 <div class="franklin-content" >
-  <h1 id="setting_up_your_environment" ><a href="#setting_up_your_environment"> Setting Up Your Environment</a></h1><p>In this post, you will learn about tools to create, run and debug Julia code.</p>
-<div class="toc"><ol><li><a href="#git">Git</a></li><li><a href="#vscode">VSCode</a></li><li><a href="#juliaup">Juliaup</a></li><li><a href="#julia_+_vscode">Julia + VSCode</a></li></ol></div><h2 id="git" ><a href="#git"> Git</a></h2><h2 id="vscode" ><a href="#vscode"> VSCode</a></h2><p>Most of our instructors will use VSCode during their tutorials. </p>
+  <h1 id="setting_up_your_environment" ><a href="#setting_up_your_environment"> Setting Up Your Environment</a></h1><div class="toc"><ol><li><a href="#git">Git</a></li><li><a href="#vscode">VSCode</a></li><li><a href="#juliaup">Juliaup</a></li><li><a href="#test_your_julia_install">Test your Julia install</a></li><li><a href="#julia_+_vscode">Julia + VSCode</a></li></ol></div><h2 id="git" ><a href="#git"> Git</a></h2><div class="tldr"><p><strong>TLDR</strong>: Visit <a href="https://education.github.com/git-cheat-sheet-education.pdf">education.github.com</a> for a nice cheatsheet </p>
+</div><h2 id="vscode" ><a href="#vscode"> VSCode</a></h2><div class="tldr"><p><strong>TLDR</strong>: Install <code>VSCode</code> from <a href="https://code.visualstudio.com/">code.visualstudio.com/</a> </p>
+</div><p>Most of our instructors will use VSCode during their tutorials. The VSCode website is fairly well documented. If you are on MacOS and have Homebrew you can simply run</p>
+<pre><code class="bash">brew install --cask visual-studio-code</code></pre>
 <h2 id="juliaup" ><a href="#juliaup"> Juliaup</a></h2><div class="tldr"><p><strong>TLDR</strong>: Install <code>juliaup</code> from <a href="https://julialang.org/install/">julialang.org/install</a> </p>
-</div><h2 id="julia_+_vscode" ><a href="#julia_+_vscode"> Julia + VSCode</a></h2><div class="tldr"><p><strong>TLDR</strong>: Check out the <a href="https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1">Julia extension docs</a> </p>
-</div><h1 id="workflow" ><a href="#workflow"> Workflow</a></h1>
+</div><p>The most natural starting point to install Julia onto your system is the <a href="https://julialang.org/downloads/">Julia downloads page</a>, which will tell you to use <a href="https://github.com/JuliaLang/juliaup"><code>juliaup</code></a>.</p>
+<ol>
+<li>Windows users can download Julia and <code>juliaup</code> together from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Windows Store</a>.</li>
+<li>OSX or Linux users can execute the following terminal command:</li>
+</ol>
+<pre><code class="bash">curl -fsSL https://install.julialang.org | sh</code></pre>
+<p>In both cases, this will make the <code>juliaup</code> and <code>julia</code> commands accessible from the terminal (or Windows Powershell).
+On Windows this will also create an application launcher.
+All users can start Julia by running</p>
+<pre><code class="bash">julia</code></pre>
+<p>Meanwhile, <code>juliaup</code> provides <a href="https://github.com/JuliaLang/juliaup#using-juliaup">various utilities</a> to download, update, organize and switch between different Julia versions.
+As a bonus, you no longer have to manually specify the path to your executable.
+This all works thanks to adaptive shortcuts called "channels", which allow you to access specific Julia versions without giving their exact number.</p>
+<p>For instance, the <code>release</code> channel will always point to the <a href="https://julialang.org/downloads/#current_stable_release">current stable version</a>, and the <code>lts</code> channel will always point to the <a href="https://julialang.org/downloads/#long_term_support_release">long-term support version</a>.
+Upon installation of <code>juliaup</code>, the current stable version of Julia is downloaded and selected as the default.</p>
+<div class="advanced"><p><strong>Advanced</strong>: To use other channels, add them to <code>juliaup</code> and put a <code>+</code> in front of the channel name when you start Julia:</p>
+ <pre><code class="bash"> juliaup add lts
+ julia +lts
+ </code></pre>
+<p> You can get an overview of the channels installed on your computer with</p>
+ <pre><code class="bash"> juliaup status
+ </code></pre>
+<p> When new versions are tagged, the version associated with a given channel can change, which means a new executable needs to be downloaded.
+ If you want to catch up with the latest developments, just do</p>
+ <pre><code class="bash"> juliaup update
+ </code></pre>
+</div><h2 id="test_your_julia_install" ><a href="#test_your_julia_install"> Test your Julia install</a></h2><p>Run this little program 😊:</p>
+<pre><code class="julia">println.(1:10 .|&gt;_-&gt;prod(j-&gt;rand([&quot;╱╲&quot;...]),1:10));</code></pre>
+<h2 id="julia_+_vscode" ><a href="#julia_+_vscode"> Julia + VSCode</a></h2><div class="tldr"><p><strong>TLDR</strong>: Check out the <a href="https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1">Julia extension docs</a> </p>
+</div><h1 id="workflow" ><a href="#workflow"> Workflow</a></h1><p>Julia supports a wide-range of workflows, although it is unique in the popularity of "REPL-driven development".</p>
+
   <div class="page-foot">
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Raye Skye Kimmerer. Last modified: July 14, 2025. </br>
     Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.

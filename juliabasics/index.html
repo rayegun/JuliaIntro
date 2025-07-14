@@ -53,6 +53,7 @@
       <a class="sidebar-nav-item active" href="/JuliaIntro/juliabasics/">First Steps</a>
         <ul class="menu-list-child-list active">
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#the_repl" class="menu-list-link">The REPL</a>
+          <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#environments" class="menu-list-link">Environments</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#package_management" class="menu-list-link">Package Management</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#basic_syntax" class="menu-list-link">Basic Syntax</a>
           <li class="menu-list-item"><a href="/JuliaIntro/juliabasics/#arrays!" class="menu-list-link">Arrays!</a>
@@ -93,7 +94,111 @@
 
 
 <div class="franklin-content" >
-  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#a_note_on_scope">A note on scope</a></li><li><a href="#arrays!">Arrays!</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><h1 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h1><p>Julia has a fairly simple syntax which is:</p>
+  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#environments">Environments</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#a_note_on_scope">A note on scope</a></li><li><a href="#arrays!">Arrays!</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><div class="tldr"><p><strong>TLDR</strong>: The Julia REPL has 4 modes: Julia, package (<code>]</code>), help (<code>?</code>) and shell (<code>;</code>). </p>
+</div><p>The Read-Eval-Print Loop (or REPL) is the most basic way to interact with Julia, check out its <a href="https://docs.julialang.org/en/v1/stdlib/REPL/">documentation</a> for details.
+You can start a REPL by typing <code>julia</code> into a terminal, or by clicking on the Julia application in your computer.
+It will allow you to play around with arbitrary Julia code:</p>
+<pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> a, b = 1, 2;
+
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> a + b
+3
+</code></pre>
+<p>This is the standard (Julia) mode of the REPL, but there are three other modes you need to know.
+Each mode is entered by typing a specific character after the <code>julia&gt;</code> prompt.
+Once you're in a non-Julia mode, you stay there for every command you run.
+To exit it, hit backspace after the prompt and you'll get the <code>julia&gt;</code> prompt back.</p>
+<h3 id="help_mode_(?)" ><a href="#help_mode_(?)"> Help mode (<code>?</code>)</a></h3><p>By pressing <code>?</code> you can obtain information and metadata about Julia objects (functions, types, etc.) or unicode symbols.
+The query fetches the docstring of the object, which explains how to use it.</p>
+<pre><code class="julia-repl"><span class="sgr33"><span class="sgr1">help?&gt;</span></span> println
+</code></pre>
+<div class="repl-help">
+<pre><code>println&#40;&#91;io::IO&#93;, xs...&#41;</code></pre>
+<p>Print &#40;using &#41; <code>xs</code> to <code>io</code> followed by a newline. If <code>io</code> is not supplied, prints to the default output stream .</p>
+<p>See also  to add colors etc.</p>
+<h1>Examples</h1>
+<pre><code class="language-julia-repl">julia&gt; println&#40;&quot;Hello, world&quot;&#41;
+Hello, world
+
+julia&gt; io &#61; IOBuffer&#40;&#41;;
+
+julia&gt; println&#40;io, &quot;Hello&quot;, &#39;,&#39;, &quot; world.&quot;&#41;
+
+julia&gt; String&#40;take&#33;&#40;io&#41;&#41;
+&quot;Hello, world.\n&quot;</code></pre>
+</div>
+<p>If you don't know the exact name you are looking for, type a word surrounded by quotes to see in which docstrings it pops up.</p>
+<h3 id="package_mode_(])" ><a href="#package_mode_(])"> Package mode (<code>]</code>)</a></h3><p>By pressing <code>]</code> you access <a href="https://github.com/JuliaLang/Pkg.jl">Pkg.jl</a>, Julia's integrated package manager, whose <a href="https://pkgdocs.julialang.org/v1/getting-started/">documentation</a> is an absolute must-read.
+Pkg.jl allows you to:</p>
+<ul>
+<li><code>]activate</code> different local, shared or temporary environments;</li>
+<li><code>]instantiate</code> them by downloading the necessary packages;</li>
+<li><code>]add</code>, <code>]update</code> (or <code>]up</code>) and <code>]remove</code> (or <code>]rm</code>) packages;</li>
+<li>get the <code>]status</code> (or <code>]st</code>) of your current environment.</li>
+</ul>
+<p>As an illustration, we download the package Example.jl inside our current environment:</p>
+<pre><code class="julia-repl"><span class="sgr34"><span class="sgr1">(JuliaIntro) pkg&gt;</span></span> add Example
+<span class="sgr33"><span class="sgr1">┌ Warning: </span></span>The Pkg REPL mode is intended for interactive use only, and should not be used from scripts. It is recommended to use the functional API instead.
+<span class="sgr33"><span class="sgr1">└ </span></span><span class="sgr90">@ Pkg.REPLMode /opt/hostedtoolcache/julia/1.11.6/x64/share/julia/stdlib/v1.11/Pkg/src/REPLMode/REPLMode.jl:388</span>
+<span class="sgr32"><span class="sgr1">   Resolving</span></span> package versions...
+<span class="sgr32"><span class="sgr1">   Installed</span></span> Example ─ v0.5.5
+<span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Project.toml`
+  <span class="sgr90">[7876af07] </span><span class="sgr92">+ Example v0.5.5</span>
+<span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Manifest.toml`
+  <span class="sgr90">[7876af07] </span><span class="sgr92">+ Example v0.5.5</span>
+Precompiling project...
+    489.4 ms  ✓ Example
+  1 dependency successfully precompiled in 1 seconds. 303 already precompiled.
+</code></pre>
+<pre><code class="julia-repl"><span class="sgr34"><span class="sgr1">(JuliaIntro) pkg&gt;</span></span> status
+<span class="sgr32"><span class="sgr1">Status</span></span> `~/work/JuliaIntro/JuliaIntro/Project.toml`
+  <span class="sgr90">[1520ce14] </span>AbstractTrees v0.4.5
+  <span class="sgr90">[6e4b80f9] </span>BenchmarkTools v1.6.0
+  <span class="sgr90">[13f3f980] </span>CairoMakie v0.15.3
+  <span class="sgr90">[7876af07] </span>Example v0.5.5
+  <span class="sgr90">[cd3eb016] </span>HTTP v1.10.17
+  <span class="sgr90">[98b081ad] </span>Literate v2.20.1
+  <span class="sgr90">[2bd173c7] </span>NodeJS v2.0.0
+  <span class="sgr90">[c3e4b0f8] </span>Pluto v0.20.13
+  <span class="sgr90">[b77e0a4c] </span>InteractiveUtils v1.11.0
+  <span class="sgr90">[37e2e46d] </span>LinearAlgebra v1.11.0
+</code></pre>
+<p>Note that the same keywords are also available in Julia mode:</p>
+<pre><code class="julia-repl"><span class="sgr32"><span class="sgr1">julia&gt;</span></span> using Pkg
+
+<span class="sgr32"><span class="sgr1">julia&gt;</span></span> Pkg.rm(&quot;Example&quot;)
+<span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Project.toml`
+  <span class="sgr90">[7876af07] </span><span class="sgr91">- Example v0.5.5</span>
+<span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/JuliaIntro/JuliaIntro/Manifest.toml`
+  <span class="sgr90">[7876af07] </span><span class="sgr91">- Example v0.5.5</span>
+<span class="sgr36"><span class="sgr1">        Info</span></span> We haven&#39;t cleaned this depot up for a bit, running Pkg.gc()...
+<span class="sgr32"><span class="sgr1">      Active</span></span> manifest files: 2 found
+<span class="sgr32"><span class="sgr1">      Active</span></span> artifact files: 60 found
+<span class="sgr32"><span class="sgr1">      Active</span></span> scratchspaces: 1 found
+<span class="sgr32"><span class="sgr1">     Deleted</span></span> no artifacts, repos, packages or scratchspaces
+</code></pre>
+<p>The package mode itself also has a help mode, accessed with <code>?</code>, in case you're lost among all these new keywords.</p>
+<h3 id="shell_mode_(;)" ><a href="#shell_mode_(;)"> Shell mode (<code>;</code>)</a></h3><p>By pressing <code>;</code> you enter a terminal, where you can execute any command you want.
+Here's an example for Unix systems:</p>
+<h2 id="environments" ><a href="#environments"> Environments</a></h2><div class="tldr"><p><strong>TLDR</strong>: Activate a local environment for each project with <code>]activate path</code>. Its details are stored in <code>Project.toml</code> and <code>Manifest.toml</code>. </p>
+</div><p>As we have seen, Pkg.jl is the Julia equivalent of <code>pip</code> or <code>conda</code> for Python.
+It lets you <a href="https://pkgdocs.julialang.org/v1/managing-packages/">install packages</a> and <a href="https://pkgdocs.julialang.org/v1/environments/">manage environments</a> (collections of packages with specific versions).</p>
+<p>You can activate an environment from the Pkg REPL by specifying its path <code>]activate somepath</code>.
+Typically, you would do <code>]activate .</code> to activate the environment in the current directory.
+Another option is to directly start Julia inside an environment, with the command line option <code>julia --project=somepath</code>.</p>
+<p>Once in an environment, the packages you <code>]add</code> will be listed in two files <code>somepath/Project.toml</code> and <code>somepath/Manifest.toml</code>:</p>
+<ul>
+<li><code>Project.toml</code> contains general project information (name of the package, unique id, authors) and direct dependencies with version bounds.</li>
+<li><code>Manifest.toml</code> contains the exact versions of all direct and indirect dependencies</li>
+</ul>
+<p>If you haven't entered any local project, packages will be installed in the default environment, called <code>@v1.X</code> after the active version of Julia (note the <code>@</code> before the name).
+Packages installed that way are available no matter which local environment is active, because of "environment <a href="https://docs.julialang.org/en/v1/manual/code-loading/#Environment-stacks">stacking</a>".
+It is recommended to keep the default environment very light to avoid dependencies conflicts. It should contain only essential development tools.</p>
+<div class="vscode"><p><strong>VSCode</strong>: You can configure the <a href="https://www.julia-vscode.org/docs/stable/userguide/env/">environment</a> in which a VSCode Julia REPL opens.
+ Just click the <code>Julia env: ...</code> button at the bottom.
+ Note however that the Julia version itself will always be the default one from <code>juliaup</code>.</p>
+</div><div class="advanced"><p><strong>Advanced</strong>: You can visualize the dependency graph of an environment with <a href="https://github.com/peng1999/PkgDependency.jl">PkgDependency.jl</a>.</p>
+</div><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><p>We're going to explore how package management and code structure typically works using <a href="https://github.com/giordano/StarWarsArrays.jl">this repository</a></p>
+<h1 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h1><p>Julia has a fairly simple syntax which is:</p>
 <ol>
 <li>"Close to the math" so that code resembles the equivalent algorithm in plain math or pseudocode. Unicode symbols can help get even closer to math notation.</li>
 <li>Avoids too much unique syntax / keywords in favor of macros</li>
@@ -449,14 +554,14 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">"asdf"</code></pre></div><p>The most basic array constructors:</p>
 <pre><code class="julia">Vector&lbrace;Int64&rbrace;(undef, 5) # 5 element Vector</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
-  8
-  0
-  0
-  0
- -1</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
+              -3
+               0
+ 139996024594608
+               1
+               3</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×3 Matrix{Float32}:
- -4.94546f-18  6.57542f-18  -1.32886f-16
-  4.581f-41    4.581f-41     4.581f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
+ -4.66108f-9  -3.10747f-12  7.52436f18
+  4.5675f-41   4.5675f-41   4.5675f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
 <p>There is also special juxtaposition syntax for empty arrays:</p>
 <pre><code class="julia">Float32[]</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">Float32[]</code></pre></div><h4 id="functions_that_generate_arrays" ><a href="#functions_that_generate_arrays"> Functions that generate arrays:</a></h4><pre><code class="julia">zeros(Bool, 3)</code></pre>
@@ -473,17 +578,14 @@ String(&quot;asdf&quot;)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{Complex{Int64}}:
  1+10im  1+10im
  1+10im  1+10im</code></pre></div><pre><code class="julia">rand(Int8)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">2</code></pre></div><pre><code class="julia">rand(5)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">8</code></pre></div><pre><code class="julia">rand(5)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Float64}:
- 0.8077921576361121
- 0.8076662617181414
- 0.293422367683674
- 0.7666169452474894
- 0.33690610916930885</code></pre></div><pre><code class="julia">rand([:🐱, 🐶, 🐦, 🐴])</code></pre>
-<div class="code-output"><pre><code class="code-stderr language-plaintext">ERROR: UndefVarError: `🐶` not defined in `Main.__FRANKLIN_1309937`
-Suggestion: check for spelling errors or missing imports.
-Stacktrace:
-</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
+ 0.28645422594385006
+ 0.17260112906624725
+ 0.46814267749253713
+ 0.4324374943516537
+ 0.9479954564990603</code></pre></div><pre><code class="julia">rand([:🐱, :🐶, :🐦, :🐴])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">:🐦</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
 <h3 id="indexing" ><a href="#indexing"> Indexing</a></h3><pre><code class="julia">v = collect(1:2:9)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
  1
@@ -516,30 +618,30 @@ Stacktrace:
  7
  8</code></pre></div><pre><code class="julia">bools = rand(Bool, length(v))</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Bool}:
+ 1
+ 1
  0
- 1
- 1
- 1
- 0</code></pre></div><pre><code class="julia">v[bools]</code></pre>
+ 0
+ 1</code></pre></div><pre><code class="julia">v[bools]</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 1
  3
- 5
- 7</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
+ 9</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
 <pre><code class="julia">v = rand(1:10, 8)</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">8-element Vector{Int64}:
-  1
-  8
-  3
-  6
-  3
-  2
-  7
- 10</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
+ 1
+ 3
+ 9
+ 7
+ 7
+ 9
+ 3
+ 1</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
-  8
-  6
-  7
- 10</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
+ 9
+ 7
+ 7
+ 9</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
 <pre><code class="julia">M[2, 2] = 10</code></pre>
 <div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><p>But wait!!! Why is the value of the expression the RHS?
 We can see that <code>M</code> has been modified:</p>
