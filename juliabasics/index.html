@@ -68,42 +68,6 @@
           <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#package_management" class="menu-list-link">Package Management</a>
           <li class="menu-list-item"><a href="/env.REPO_PREFIX/dispatch/#basic_syntax" class="menu-list-link">Basic Syntax</a>
         </ul>
-      
-      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/sharing/">Sharing</a>
-      <ul class="menu-list-child-list ">
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#setup" class="menu-list-link">Setup</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#github_actions" class="menu-list-link">GitHub Actions</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#testing" class="menu-list-link">Testing</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#style" class="menu-list-link">Style</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#code_quality" class="menu-list-link">Code quality</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#documentation" class="menu-list-link">Documentation</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#literate_programming" class="menu-list-link">Literate programming</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#versions_and_registration" class="menu-list-link">Versions and registration</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#reproducibility" class="menu-list-link">Reproducibility</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#interoperability" class="menu-list-link">Interoperability</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/sharing/#collaboration" class="menu-list-link">Collaboration</a>
-      </ul>
-      
-      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/optimizing/">Optimizing</a>
-      <ul class="menu-list-child-list ">
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#principles" class="menu-list-link">Principles</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#measurements" class="menu-list-link">Measurements</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#profiling" class="menu-list-link">Profiling</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#type_stability" class="menu-list-link">Type stability</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#memory_management" class="menu-list-link">Memory management</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#compilation" class="menu-list-link">Compilation</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#parallelism" class="menu-list-link">Parallelism</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/optimizing/#efficient_types" class="menu-list-link">Efficient types</a>
-      </ul>
-      
-      <a class="sidebar-nav-item " href="/env.REPO_PREFIX/further/">Going further</a>
-      <ul class="menu-list-child-list ">
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#official" class="menu-list-link">Official</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#tutorials" class="menu-list-link">Tutorials</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#blogs" class="menu-list-link">Blogs</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#videos" class="menu-list-link">Videos</a>
-        <li class="menu-list-item"><a href="/env.REPO_PREFIX/further/#lore" class="menu-list-link">Lore</a>
-      </ul>
     </nav>
     <p class="copyright-notice">
       <a href="https://github.com/modernjuliaworkflows/modernjuliaworkflows.github.io/blob/main/LICENSE">
@@ -125,7 +89,7 @@
 
 
 <div class="franklin-content" >
-  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#basic_syntax">Basic Syntax</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><h2 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h2><p>Julia has a fairly simple syntax which is:</p>
+  <h1 id="julia_first_steps" ><a href="#julia_first_steps"> Julia First Steps</a></h1><div class="toc"><ol><li><a href="#the_repl">The REPL</a></li><li><a href="#package_management">Package Management</a></li><li><a href="#basic_syntax">Basic Syntax</a></li><li><a href="#loading_packages">Loading packages</a></li><li><a href="#literals_and_variables">Literals and Variables</a></li><li><a href="#operators_and_functions">Operators and Functions</a></li><li><a href="#control_flow">Control Flow</a></li><li><a href="#raye's_arrays!">Raye's Arrays!</a></li><li><a href="#tips_tricks_and_conventions">Tips Tricks and Conventions</a></li></ol></div><h2 id="the_repl" ><a href="#the_repl"> The REPL</a></h2><h2 id="package_management" ><a href="#package_management"> Package Management</a></h2><h2 id="basic_syntax" ><a href="#basic_syntax"> Basic Syntax</a></h2><p>Julia has a fairly simple syntax which is:</p>
 <ol>
 <li>"Close to the math" so that code resembles the equivalent algorithm in plain math or pseudocode. Unicode symbols can help get even closer to math notation.</li>
 <li>Avoids too much unique syntax / keywords in favor of macros</li>
@@ -159,7 +123,12 @@ true           # Boolean
  2
  3
  4</code></pre></div><pre><code class="julia">(1, 3.14159, &quot;Quantum? Never met 'em!&quot;) # A Tuple (an immutable fixed length collection)</code></pre>
-<div class="code-output"><pre><code class="code-result language-plaintext">(1, 3.14159, "Quantum? Never met 'em!")</code></pre></div><p>Now that we have literals we might like to give them a name.
+<div class="code-output"><pre><code class="code-result language-plaintext">(1, 3.14159, "Quantum? Never met 'em!")</code></pre></div><p>A symbol is an identifier, a set of characters prefixed by a colon.
+Mostly used internally for Julia, they are essentially how you represent names (variables) as data.
+They are a little different than strings, but you won't see them often.</p>
+<pre><code class="julia">:iamasymbol
+:🐱</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">:🐱</code></pre></div><p>Now that we have literals we might like to give them a name.
 We can assign literals (and any other data) to a variable, which is simply a named value:</p>
 <pre><code class="julia">a = [1,2,3,4]
 w = 10
@@ -391,7 +360,232 @@ end</code></pre>
 <div class="code-output"><pre><code class="code-stdout language-plaintext">🤔
 💻
 </code></pre></div><p>That covers most of the basic syntax we will need to get started. </p>
-<h2 id="tips_tricks_and_conventions" ><a href="#tips_tricks_and_conventions"> Tips Tricks and Conventions</a></h2><h3 id="can't_figure_out_how_to_type_a_unicode_character?" ><a href="#can't_figure_out_how_to_type_a_unicode_character?"> Can't figure out how to type a Unicode character?</a></h3><p>We will be using lots of Unicode characters throughout the week. If you can't figure out how to type a character, but you're able to copy and paste it into the REPL you can use the <code>help</code> REPL we discussed earlier:</p>
+<h2 id="raye's_arrays!" ><a href="#raye's_arrays!"> Raye's Arrays!</a></h2><p>Forgive the section title 😇</p>
+<p>Julia has a fantastic built-in standard library for linear algebra.</p>
+<pre><code class="julia">using LinearAlgebra</code></pre>
+<h3 id="what_is_an_"array"_in_julia?" ><a href="#what_is_an_"array"_in_julia?"> What is an "Array" in Julia?</a></h3><p>Many languages have different concepts of arrays.
+In a language like C you might use raw pointers 😱.
+<br>
+
+In a language like Python you might use NumPy arrays or PyTorch tensors</p>
+<blockquote><p><strong>Types</strong></p>
+<p>This section will start talking a bit about types.
+If it's a bit confusing don't worry, the next section will clear up any confusion!</p>
+</blockquote><p>In Julia the array types stick pretty close to the mathematical sense of the word.
+The most common three array types in Julia are:</p>
+<pre><code class="julia">Vector&lbrace;T&rbrace; where T</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Vector (alias for Array{T, 1} where T)</code></pre></div><pre><code class="julia">Matrix&lbrace;T&rbrace; where T</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Matrix (alias for Array{T, 2} where T)</code></pre></div><pre><code class="julia">Array&lbrace;T, N&rbrace; where &lbrace;T, N&rbrace;;</code></pre>
+<p>If this syntax is confusing to you don't worry! We'll talk more about this later but the expressions above are <em><strong>types</em></strong>. Specifically they are <em><strong>parametric types</em></strong> with a placeholder <code>T</code> for the element type. The <code>N</code> parameter for array is the dimension, which is an integer!</p>
+<p>We can substitute different things such as types for the placeholder <code>T</code>, for instance:</p>
+<pre><code class="julia">Vector&lbrace;Int64&rbrace;</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Vector{Int64} (alias for Array{Int64, 1})</code></pre></div><p>is a <code>Vector</code> with 64-bit integer elements.</p>
+<p>If we go a bit further we can create high dimensional array types:</p>
+<pre><code class="julia">Array&lbrace;Bool, 6&rbrace;</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Array{Bool, 6}</code></pre></div><p>Notice that <code>Vector</code> and <code>Matrix</code> are simply aliases for the a 1 dimensional and 2 dimensional <code>Array</code> respectively</p>
+<h3 id="constructing_arrays" ><a href="#constructing_arrays"> Constructing arrays</a></h3><p>We've already seen literals several times!</p>
+<pre><code class="julia">[1,2,3]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code></pre></div><p>Here's some new literals!</p>
+<pre><code class="julia">[&quot;🐞&quot; &quot;🐕&quot;
+ &quot;🐻&quot; &quot;🧚&quot;]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{String}:
+ "🐞"  "🐕"
+ "🐻"  "🧚"</code></pre></div><pre><code class="julia">A = [1 2; 3 4]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{Int64}:
+ 1  2
+ 3  4</code></pre></div><p>There are <em>lots</em> of ways to write array literals in Julia. Check out your cheatsheet for more.</p>
+<h4 id="comprehensions" ><a href="#comprehensions"> Comprehensions</a></h4><p>We have a funky syntax for constructing called <em>comprehensions</em>:</p>
+<pre><code class="julia">[x for x in 1:10 if x % 3 == 1]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
+  1
+  4
+  7
+ 10</code></pre></div><pre><code class="julia">[i + j for i in 1:4, j in 1:3]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4×3 Matrix{Int64}:
+ 2  3  4
+ 3  4  5
+ 4  5  6
+ 5  6  7</code></pre></div><h4 id="constructors" ><a href="#constructors"> Constructors</a></h4><p>Every type in Julia has constructors, which are functions that return a specific type
+We have constructors for basic numeric types and strings:</p>
+<pre><code class="julia">Float64(10)
+String(&quot;asdf&quot;)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">"asdf"</code></pre></div><p>The most basic array constructors:</p>
+<pre><code class="julia">Vector&lbrace;Int64&rbrace;(undef, 5) # 5 element Vector</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
+          262144
+ 140228750862896
+ 140229356998352
+ 140229243133072
+ 140229394637120</code></pre></div><pre><code class="julia">Matrix&lbrace;Float32&rbrace;(undef, 2, 3)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2×3 Matrix{Float32}:
+ -4.76209f-8  1.0f-44  -4.55371f-8
+  4.5751f-41  6.0f-45   4.5751f-41</code></pre></div><p>Notice that the values are random. The <code>undef</code> constructors, which use the special <code>undef</code> global constant contain uninitialized memory whose values haven't been set to zero.</p>
+<p>There is also special juxtaposition syntax for empty arrays:</p>
+<pre><code class="julia">Float32[]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Float32[]</code></pre></div><h4 id="functions_that_generate_arrays" ><a href="#functions_that_generate_arrays"> Functions that generate arrays:</a></h4><pre><code class="julia">zeros(Bool, 3)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Bool}:
+ 0
+ 0
+ 0</code></pre></div><pre><code class="julia">zeros(5, 5)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5×5 Matrix{Float64}:
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0</code></pre></div><pre><code class="julia">fill(1 + 10im, 2, 2)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2×2 Matrix{Complex{Int64}}:
+ 1+10im  1+10im
+ 1+10im  1+10im</code></pre></div><pre><code class="julia">rand(Int8)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">105</code></pre></div><pre><code class="julia">rand(5)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Float64}:
+ 0.45778764597870936
+ 0.19915608712385857
+ 0.5616758759486303
+ 0.5628559701788008
+ 0.9574265118485896</code></pre></div><pre><code class="julia">rand([:🐱, 🐶, 🐦, 🐴])</code></pre>
+<div class="code-output"><pre><code class="code-stderr language-plaintext">ERROR: UndefVarError: `🐶` not defined in `Main.__FRANKLIN_1309937`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+</code></pre></div><p>You can see above how we have used the <code>rand</code> function for 3 completely different tasks above. We will talk more about this with <code>methods</code> later.</p>
+<h3 id="indexing" ><a href="#indexing"> Indexing</a></h3><pre><code class="julia">v = collect(1:2:9)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Int64}:
+ 1
+ 3
+ 5
+ 7
+ 9</code></pre></div><pre><code class="julia">v[4] # 1-based indexing!</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">7</code></pre></div><pre><code class="julia">M = [1 2 3
+     4 5 6
+     7 8 9]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3×3 Matrix{Int64}:
+ 1  2  3
+ 4  5  6
+ 7  8  9</code></pre></div><p>We can still index <code>M</code> with a single integer:</p>
+<pre><code class="julia">M[5]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5</code></pre></div><p>Can you guess what is happening above? This is called <em>linear indexing</em></p>
+<pre><code class="julia">M[2, 3] # &quot;cartesian&quot; indexing</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">6</code></pre></div><h3 id="slicing" ><a href="#slicing"> Slicing</a></h3><pre><code class="julia">M[:, 1]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 1
+ 4
+ 7</code></pre></div><pre><code class="julia">M[2, :]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 4
+ 5
+ 6</code></pre></div><p>The <code>:</code> is a placeholder for the entire range of the specified dimension</p>
+<h3 id="fancy_indexing" ><a href="#fancy_indexing"> Fancy indexing</a></h3><pre><code class="julia">M[[1, 3, 6]]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Int64}:
+ 1
+ 7
+ 8</code></pre></div><pre><code class="julia">bools = rand(Bool, length(v))</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">5-element Vector{Bool}:
+ 1
+ 1
+ 0
+ 1
+ 1</code></pre></div><pre><code class="julia">v[bools]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">4-element Vector{Int64}:
+ 1
+ 3
+ 7
+ 9</code></pre></div><p>We can use the boolean version of indexing and the broadcasting we discussed earlier to filter!</p>
+<pre><code class="julia">v = rand(1:10, 8)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">8-element Vector{Int64}:
+ 6
+ 7
+ 9
+ 7
+ 4
+ 7
+ 8
+ 8</code></pre></div><pre><code class="julia">v[v .&gt; 5]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">7-element Vector{Int64}:
+ 6
+ 7
+ 9
+ 7
+ 7
+ 8
+ 8</code></pre></div><h3 id="setting_values" ><a href="#setting_values"> Setting values</a></h3><p>Getting values from an array is very similar to setting them:</p>
+<pre><code class="julia">M[2, 2] = 10</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">10</code></pre></div><p>But wait!!! Why is the value of the expression the RHS?
+We can see that <code>M</code> has been modified:</p>
+<pre><code class="julia">M</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3×3 Matrix{Int64}:
+ 1   2  3
+ 4  10  6
+ 7   8  9</code></pre></div><p>We can use all the same fancy indexing with a catch, if we refer to multiple indices on the left hand side we must use broadcasting!</p>
+<pre><code class="julia">M[:, 1] .= 2M[:, begin]</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element view(::Matrix{Int64}, :, 1) with eltype Int64:
+  2
+  8
+ 14</code></pre></div><pre><code class="julia">M</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3×3 Matrix{Int64}:
+  2   2  3
+  8  10  6
+ 14   8  9</code></pre></div><p>We can use the <code>begin</code> and <code>end</code> keywords instead of the 1st index (which might <em>not</em> be 1 😈) and the last index in a dimension.</p>
+<p>We get off easy with the broadcasting above since the shapes of the left hand side and right hand side obviously matched. What if they didn't?</p>
+<pre><code class="julia">M[1, 1:2] .= [1,2,3]</code></pre>
+<div class="code-output"><pre><code class="code-stderr language-plaintext">ERROR: DimensionMismatch: array could not be broadcast to match destination
+Stacktrace:
+  [1] check_broadcast_shape
+    @ ./broadcast.jl:552 [inlined]
+  [2] check_broadcast_axes
+    @ ./broadcast.jl:555 [inlined]
+  [3] instantiate
+    @ ./broadcast.jl:310 [inlined]
+  [4] materialize!
+    @ ./broadcast.jl:883 [inlined]
+  [5] materialize!(dest::SubArray{Int64, 1, Matrix{Int64}, Tuple{Int64, UnitRange{Int64}}, true}, bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{1}, Nothing, typeof(identity), Tuple{Vector{Int64}}})
+    @ Base.Broadcast ./broadcast.jl:880
+</code></pre></div><p>💥💥💥💥!</p>
+<h3 id="a_few_important_functions_that_on_arrays" ><a href="#a_few_important_functions_that_on_arrays"> A few important functions that on Arrays</a></h3><pre><code class="julia">size(M)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">(3, 3)</code></pre></div><pre><code class="julia">@show length(M) == size(M, 1) * size(M, 2)</code></pre>
+<div class="code-output"><pre><code class="code-stdout language-plaintext">length(M) == size(M, 1) * size(M, 2) = true
+</code></pre></div><p>Reshape a 6 element range into a matrix, then flatten it into a vector</p>
+<pre><code class="julia">vec(reshape(collect(1:6), 2, 3))</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">6-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6</code></pre></div><p>What happens if we take away the collect?</p>
+<pre><code class="julia">vec(reshape(1:6, 2, 3)) # we'll talk about this kind of trick later</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">1:6</code></pre></div><p>Concatenating arrays is an important but tricky operation</p>
+<pre><code class="julia">vcat([1, 2, 3], [4, 5, 6])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">6-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6</code></pre></div><pre><code class="julia">hcat([1,2,3], [4,5,6])</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3×2 Matrix{Int64}:
+ 1  4
+ 2  5
+ 3  6</code></pre></div><p>We can do more than just set specific indices of arrays (well, at least Vectors).
+Julia's <code>Vector</code> type can grow and shrink:</p>
+<pre><code class="julia">v = [] # Notice the type of `v`</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">Any[]</code></pre></div><pre><code class="julia">push!(v, :🧡)
+push!(v, :🚙)
+pushfirst!(v, :💙)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Any}:
+ :💙
+ :🧡
+ :🚙</code></pre></div><p>We've got a new convention to examine! In the Julia universe by convention (but not enforced by the compiler), functions which mutate one or more argument have <code>!</code> as a suffix.</p>
+<pre><code class="julia">v</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">3-element Vector{Any}:
+ :💙
+ :🧡
+ :🚙</code></pre></div><pre><code class="julia">pop!(v)</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">:🚙</code></pre></div><pre><code class="julia">v</code></pre>
+<div class="code-output"><pre><code class="code-result language-plaintext">2-element Vector{Any}:
+ :💙
+ :🧡</code></pre></div><h2 id="tips_tricks_and_conventions" ><a href="#tips_tricks_and_conventions"> Tips Tricks and Conventions</a></h2><h3 id="can't_figure_out_how_to_type_a_unicode_character?" ><a href="#can't_figure_out_how_to_type_a_unicode_character?"> Can't figure out how to type a Unicode character?</a></h3><p>We will be using lots of Unicode characters throughout the week. If you can't figure out how to type a character, but you're able to copy and paste it into the REPL you can use the <code>help</code> REPL we discussed earlier:</p>
 <pre><code class="julia">help?&gt; 🤔</code></pre>
 <h3 id="13633231208144796923" ><a href="#13633231208144796923"> </a></h3>
   <div class="page-foot">
