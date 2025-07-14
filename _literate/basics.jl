@@ -22,6 +22,13 @@ true           # Boolean
 [1, 2, 3, 4]   # Vector of Int64
 #-
 (1, 3.14159, "Quantum? Never met 'em!") # A Tuple (an immutable fixed length collection)
+
+# A symbol is an identifier, a set of characters prefixed by a colon.
+# Mostly used internally for Julia, they are essentially how you represent names (variables) as data.
+# They are a little different than strings, but you won't see them often.
+:iamasymbol
+:🐱
+
 # Now that we have literals we might like to give them a name.
 # We can assign literals (and any other data) to a variable, which is simply a named value:
 a = [1,2,3,4]

@@ -29,6 +29,12 @@ Keep this in mind as we go through the code.}
 
 That covers most of the basic syntax we will need to get started. 
 
+## Raye's Arrays!
+Forgive the section title 😇
+
+\literate{./_literate/arrays.jl; project=./notebooks/}
+
+
 ## Tips Tricks and Conventions
 
 ### Can't figure out how to type a Unicode character?

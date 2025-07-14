@@ -134,3 +134,15 @@ TODO: remove when not required in Xranklin.
 .code-stdout::before {content: "Result"; padding: 0.05rem 0.5rem 0.05rem;}
 .code-result {background-color: #394758 !important;}
 .code-stdout {background-color: #394758 !important;}
+
+
+@font-face {
+    font-family: JuliaMono-Light;
+    /* src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono-webfonts/JuliaMono-Black.woff2");*/
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono/webfonts/JuliaMono-Light.woff2");
+}
+
+pre > code {
+    font-family: "JuliaMono-Black", "Consolas", "Courier", monospace;
+    font-variant-ligatures: contextual;
+}

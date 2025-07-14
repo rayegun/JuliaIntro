@@ -57,3 +57,12 @@ Add here global latex commands to use throughout your pages.
 
   \toc\literate{/_literate/!#1/tutorial.jl}
 }
+
+\newcommand{\image}[3]{
+~~~
+<figure style="text-align:center;">
+<img src="!#2" style="padding:0;#3" alt="#1"/>
+<figcaption>#1</figcaption>
+</figure>
+~~~
+}
